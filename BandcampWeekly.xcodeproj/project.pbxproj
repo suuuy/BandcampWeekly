@@ -1,0 +1,433 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0BAFC765AFAF1A8CBFCCA304 /* Pods_BandcampWeekly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49A5148843CCC13C99A92FB7 /* Pods_BandcampWeekly.framework */; };
+		19ED0167DFB94B920F2BA024 /* BandcampRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ED040FEF2CBF654A020DBC /* BandcampRequest.swift */; };
+		19ED04FAFEFDEE5EE82D33DD /* BandcampModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ED0091FB3770F7DCC27371 /* BandcampModel.swift */; };
+		19ED074DC385D7A5CB8FF5A7 /* WeeklyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ED04C1101BC310233BA9CC /* WeeklyModel.swift */; };
+		19ED0C7023394CCF6F566833 /* EventMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ED0C645E4A781955BCF591 /* EventMonitor.swift */; };
+		19ED0EF11AB2286CFCBE9530 /* TrackModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ED0DB4F4626CC454F7DC96 /* TrackModel.swift */; };
+		3F4BF9DB1FF5E57100E8F281 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4BF9DA1FF5E57100E8F281 /* AppDelegate.swift */; };
+		3F4BF9DD1FF5E57100E8F281 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4BF9DC1FF5E57100E8F281 /* ViewController.swift */; };
+		3F4BF9DF1FF5E57100E8F281 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F4BF9DE1FF5E57100E8F281 /* Assets.xcassets */; };
+		3F4BF9E21FF5E57100E8F281 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F4BF9E01FF5E57100E8F281 /* Main.storyboard */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		19ED0091FB3770F7DCC27371 /* BandcampModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BandcampModel.swift; sourceTree = "<group>"; };
+		19ED040FEF2CBF654A020DBC /* BandcampRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BandcampRequest.swift; sourceTree = "<group>"; };
+		19ED04C1101BC310233BA9CC /* WeeklyModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeeklyModel.swift; sourceTree = "<group>"; };
+		19ED0C645E4A781955BCF591 /* EventMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventMonitor.swift; sourceTree = "<group>"; };
+		19ED0DB4F4626CC454F7DC96 /* TrackModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackModel.swift; sourceTree = "<group>"; };
+		3F4BF9D71FF5E57100E8F281 /* BandcampWeekly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BandcampWeekly.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3F4BF9DA1FF5E57100E8F281 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		3F4BF9DC1FF5E57100E8F281 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		3F4BF9DE1FF5E57100E8F281 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3F4BF9E11FF5E57100E8F281 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		3F4BF9E31FF5E57100E8F281 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3F4BF9E41FF5E57100E8F281 /* BandcampWeekly.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BandcampWeekly.entitlements; sourceTree = "<group>"; };
+		49A5148843CCC13C99A92FB7 /* Pods_BandcampWeekly.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BandcampWeekly.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5581B7649A506DFA68E39114 /* Pods-BandcampWeekly.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BandcampWeekly.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BandcampWeekly/Pods-BandcampWeekly.debug.xcconfig"; sourceTree = "<group>"; };
+		7E396A86424B3795B3E34682 /* Pods-BandcampWeekly.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BandcampWeekly.release.xcconfig"; path = "Pods/Target Support Files/Pods-BandcampWeekly/Pods-BandcampWeekly.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3F4BF9D41FF5E57100E8F281 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0BAFC765AFAF1A8CBFCCA304 /* Pods_BandcampWeekly.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		19ED058F07C0D470898CB417 /* Modal */ = {
+			isa = PBXGroup;
+			children = (
+				19ED04C1101BC310233BA9CC /* WeeklyModel.swift */,
+				19ED0091FB3770F7DCC27371 /* BandcampModel.swift */,
+				19ED0DB4F4626CC454F7DC96 /* TrackModel.swift */,
+			);
+			path = Modal;
+			sourceTree = "<group>";
+		};
+		3F4BF9CE1FF5E57100E8F281 = {
+			isa = PBXGroup;
+			children = (
+				3F4BF9D91FF5E57100E8F281 /* BandcampWeekly */,
+				3F4BF9D81FF5E57100E8F281 /* Products */,
+				A4B49AA32C59A989CAF90B08 /* Pods */,
+				DB05DAA6A304C6194B93FB85 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		3F4BF9D81FF5E57100E8F281 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3F4BF9D71FF5E57100E8F281 /* BandcampWeekly.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3F4BF9D91FF5E57100E8F281 /* BandcampWeekly */ = {
+			isa = PBXGroup;
+			children = (
+				3F4BF9DA1FF5E57100E8F281 /* AppDelegate.swift */,
+				3F4BF9DC1FF5E57100E8F281 /* ViewController.swift */,
+				3F4BF9DE1FF5E57100E8F281 /* Assets.xcassets */,
+				3F4BF9E01FF5E57100E8F281 /* Main.storyboard */,
+				3F4BF9E31FF5E57100E8F281 /* Info.plist */,
+				3F4BF9E41FF5E57100E8F281 /* BandcampWeekly.entitlements */,
+				19ED040FEF2CBF654A020DBC /* BandcampRequest.swift */,
+				19ED058F07C0D470898CB417 /* Modal */,
+				19ED0C645E4A781955BCF591 /* EventMonitor.swift */,
+			);
+			path = BandcampWeekly;
+			sourceTree = "<group>";
+		};
+		A4B49AA32C59A989CAF90B08 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5581B7649A506DFA68E39114 /* Pods-BandcampWeekly.debug.xcconfig */,
+				7E396A86424B3795B3E34682 /* Pods-BandcampWeekly.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		DB05DAA6A304C6194B93FB85 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				49A5148843CCC13C99A92FB7 /* Pods_BandcampWeekly.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3F4BF9D61FF5E57100E8F281 /* BandcampWeekly */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3F4BF9E71FF5E57100E8F281 /* Build configuration list for PBXNativeTarget "BandcampWeekly" */;
+			buildPhases = (
+				8AB67DBA87DF388F420FF98F /* [CP] Check Pods Manifest.lock */,
+				3F4BF9D31FF5E57100E8F281 /* Sources */,
+				3F4BF9D41FF5E57100E8F281 /* Frameworks */,
+				3F4BF9D51FF5E57100E8F281 /* Resources */,
+				0DE7555ECCE934758AED4FC4 /* [CP] Embed Pods Frameworks */,
+				3564392FA9B482683CE95666 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BandcampWeekly;
+			productName = BandcampWeekly;
+			productReference = 3F4BF9D71FF5E57100E8F281 /* BandcampWeekly.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3F4BF9CF1FF5E57100E8F281 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0920;
+				LastUpgradeCheck = 0920;
+				ORGANIZATIONNAME = Muo.io;
+				TargetAttributes = {
+					3F4BF9D61FF5E57100E8F281 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 3F4BF9D21FF5E57100E8F281 /* Build configuration list for PBXProject "BandcampWeekly" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 3F4BF9CE1FF5E57100E8F281;
+			productRefGroup = 3F4BF9D81FF5E57100E8F281 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3F4BF9D61FF5E57100E8F281 /* BandcampWeekly */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3F4BF9D51FF5E57100E8F281 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3F4BF9DF1FF5E57100E8F281 /* Assets.xcassets in Resources */,
+				3F4BF9E21FF5E57100E8F281 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0DE7555ECCE934758AED4FC4 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-BandcampWeekly/Pods-BandcampWeekly-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/HexColors/HexColors.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftDate/SwiftDate.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftSoup/SwiftSoup.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HexColors.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftDate.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftSoup.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BandcampWeekly/Pods-BandcampWeekly-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3564392FA9B482683CE95666 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BandcampWeekly/Pods-BandcampWeekly-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8AB67DBA87DF388F420FF98F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BandcampWeekly-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3F4BF9D31FF5E57100E8F281 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3F4BF9DD1FF5E57100E8F281 /* ViewController.swift in Sources */,
+				3F4BF9DB1FF5E57100E8F281 /* AppDelegate.swift in Sources */,
+				19ED0167DFB94B920F2BA024 /* BandcampRequest.swift in Sources */,
+				19ED074DC385D7A5CB8FF5A7 /* WeeklyModel.swift in Sources */,
+				19ED04FAFEFDEE5EE82D33DD /* BandcampModel.swift in Sources */,
+				19ED0EF11AB2286CFCBE9530 /* TrackModel.swift in Sources */,
+				19ED0C7023394CCF6F566833 /* EventMonitor.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		3F4BF9E01FF5E57100E8F281 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3F4BF9E11FF5E57100E8F281 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		3F4BF9E51FF5E57100E8F281 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		3F4BF9E61FF5E57100E8F281 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+			};
+			name = Release;
+		};
+		3F4BF9E81FF5E57100E8F281 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5581B7649A506DFA68E39114 /* Pods-BandcampWeekly.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = BandcampWeekly/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = io.muo.BandcampWeekly;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Debug;
+		};
+		3F4BF9E91FF5E57100E8F281 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7E396A86424B3795B3E34682 /* Pods-BandcampWeekly.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = BandcampWeekly/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = io.muo.BandcampWeekly;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3F4BF9D21FF5E57100E8F281 /* Build configuration list for PBXProject "BandcampWeekly" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3F4BF9E51FF5E57100E8F281 /* Debug */,
+				3F4BF9E61FF5E57100E8F281 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3F4BF9E71FF5E57100E8F281 /* Build configuration list for PBXNativeTarget "BandcampWeekly" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3F4BF9E81FF5E57100E8F281 /* Debug */,
+				3F4BF9E91FF5E57100E8F281 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3F4BF9CF1FF5E57100E8F281 /* Project object */;
+}
