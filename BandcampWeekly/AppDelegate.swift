@@ -43,6 +43,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     @objc func togglePopover(_ sender: NSButton?) {
+        print(sender?.action, NSEvent.pressedMouseButtons)
         if popover.isShown {
             closePopover(sender: sender)
         } else {

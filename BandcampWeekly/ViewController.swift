@@ -17,12 +17,15 @@ class ViewController: NSViewController {
 
     @IBOutlet weak var bandcampLabel: NSTextFieldCell!
     @IBOutlet weak var dateLabel: NSTextFieldCell!
-    @IBOutlet weak var sonyNameLabel: NSTextFieldCell!
+    @IBOutlet weak var sonyNameButton: NSButton!
     @IBOutlet weak var mainView: NSStackView!
     @IBOutlet weak var loadingView: NSStackView!
     @IBOutlet weak var playButton: NSButton!
     @IBOutlet weak var playerView: AVPlayerView!
     @IBOutlet weak var timeSlider: NSSlider!
+    @IBOutlet weak var playLoading: NSProgressIndicator!
+    @IBOutlet weak var loadingProgress: NSProgressIndicator!
+    @IBOutlet weak var menuButton: NSPopUpButton!
     var playImage = NSImage(named: NSImage.Name("Play"))
     var pauseImage = NSImage(named: NSImage.Name("Pause"))
     var playerAsset: AVAsset!
@@ -40,6 +43,12 @@ class ViewController: NSViewController {
         mainView.isHidden = true;
         loadingView.isHidden = false;
         playButton.isEnabled = false;
+        playLoading.isHidden = true;
+        loadingProgress.usesThreadedAnimation = true
+        loadingProgress.doubleValue = 10;
+        menuButton.menu?.addItem(NSMenuItem(title: "关于", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "P"))
+        menuButton.menu?.addItem(NSMenuItem.separator())
+        menuButton.menu?.addItem(NSMenuItem(title: "退出", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q"))
     }
 
     override var representedObject: Any? {
@@ -73,9 +82,13 @@ class ViewController: NSViewController {
     }
 
     func setAlbumLabel(album: TrackModel) {
-        print("set album label", album)
-        sonyNameLabel.textColor = NSColor("#408ea3")
-        sonyNameLabel.title = album.title + " / " + album.albumTitle
+        sonyNameButton.attributedTitle = NSAttributedString(
+                string: album.title + " / " + album.albumTitle,
+                attributes: [
+                    NSAttributedStringKey.foregroundColor: NSColor("#408ea3"),
+                ]
+        )
+//        sonyNameButton.title = album.title + " / " + album.albumTitle
     }
 
     func setDateLabel() {
@@ -102,6 +115,8 @@ class ViewController: NSViewController {
 
         print("Starting bandcamp weekly from : {} ", streamUrl)
 
+        loadingProgress.doubleValue = 50;
+
         mainView.isHidden = false
         loadingView.isHidden = true;
 
@@ -124,10 +139,12 @@ class ViewController: NSViewController {
             let status = self.playerAsset.statusOfValue(forKey: "playable", error: &error)
             switch status {
             case .loading:
+                self.playLoading.isHidden = false;
                 NSLog("loading bandcamp weekly ")
             case .loaded:
                 NSLog("loaded bandcamp weekly ")
                 self.playButton.isEnabled = true;
+                self.playButton.image = self.playImage;
             case .cancelled:
                 NSLog("load canceled bandcamp weekly ")
                 self.playButton.isEnabled = false;
@@ -146,7 +163,74 @@ class ViewController: NSViewController {
         playerItem.preferredForwardBufferDuration = 60 * 20;
         playerItem.preferredPeakBitRate = 1000 * 1000 * 2;
         playerItem.canUseNetworkResourcesForLiveStreamingWhilePaused = true;
+
+        // Register as an observer of the player item's status property
+        playerItem.addObserver(
+                self,
+                forKeyPath: #keyPath(AVPlayerItem.status),
+                options: [.old, .new],
+                context: &playerItemContext
+        )
+
+        NotificationCenter.default.addObserver(
+                self,
+                selector: #selector(self.onPlaybackStalled),
+                name: NSNotification.Name.AVPlayerItemPlaybackStalled,
+                object: playerItem
+        )
+
         return playerItem;
+    }
+
+
+    @objc func onPlaybackStalled(notification: NSNotification) {
+        print("notification", notification)
+        playLoading.isHidden = false;
+        self.playButton.image = nil;
+        self.playButton.image = self.playImage;
+    }
+
+    override func observeValue(
+            forKeyPath keyPath: String?,
+            of object: Any?,
+            change: [NSKeyValueChangeKey: Any]?,
+            context: UnsafeMutableRawPointer?
+    ) {
+        // Only handle observations for the playerItemContext
+        guard context == &playerItemContext else {
+            super.observeValue(
+                    forKeyPath: keyPath,
+                    of: object,
+                    change: change,
+                    context: context
+            )
+            return
+        }
+
+        if keyPath == #keyPath(AVPlayerItem.status) {
+            let status: AVPlayerItemStatus
+
+            // Get the status change from the change dictionary
+            if let statusNumber = change?[.newKey] as? NSNumber {
+                status = AVPlayerItemStatus(rawValue: statusNumber.intValue)!
+            } else {
+                status = .unknown
+            }
+
+            // Switch over the status
+            switch status {
+            case .readyToPlay:
+                self.playLoading.isHidden = true;
+                self.playButton.image = playImage;
+                    // Player item is ready to play.
+            case .failed:
+                print("failed to play")
+                    // Player item failed. See error.
+            case .unknown:
+                print("unknown to play")
+                    // Player item is not yet ready.
+            }
+        }
     }
 
     func getPlayer(playerItem: AVPlayerItem) -> AVPlayer {
@@ -165,7 +249,6 @@ class ViewController: NSViewController {
         ) {
             [weak self] time in
             var cur = CMTimeGetSeconds(time);
-            print("current ", cur)
             self?.timeSlider.doubleValue = cur
             self?.curAlbum = self?.weekly.find(time: cur)
             self?.setAlbumLabel(album: (self?.curAlbum)!);
@@ -187,7 +270,6 @@ class ViewController: NSViewController {
                 queue: mainQueue
         ) {
             [weak self] time in
-            print("current ", CMTimeGetSeconds(time))
             self?.timeSlider.doubleValue = CMTimeGetSeconds(time)
         }
     }
@@ -196,6 +278,12 @@ class ViewController: NSViewController {
         if playing {
             return
         }
+        print(playerItem.asset.isPlayable)
+        if !playerItem.asset.isPlayable {
+            playButton.image = nil;
+            playLoading.isHidden = false;
+        }
+        playLoading.isHidden = true;
         player.play()
         playing = !playing
         playButton.image = playing ? pauseImage : playImage;
@@ -243,7 +331,7 @@ class ViewController: NSViewController {
             print("default browser was failed opened")
         }
     }
-    
+
     @IBAction func togglePlay(_ sender: Any) {
         if playing {
             pause()
@@ -251,6 +339,9 @@ class ViewController: NSViewController {
             play()
         }
         print("toggle playing to ", playing)
+    }
+
+    @IBAction func openSetting(_ sender: Any) {
     }
 }
 
