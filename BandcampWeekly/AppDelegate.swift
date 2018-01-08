@@ -63,16 +63,5 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         popover.performClose(sender)
         eventMonitor?.stop()
     }
-
-    func initMenu() {
-        let menu = NSMenu()
-
-//        menu.addItem(NSMenuItem(title: "关于 Bandcamp Weekly", action: #selector(AppDelegate.printQuote(_:)), keyEquivalent: "P"))
-        menu.addItem(NSMenuItem.separator())
-        menu.addItem(NSMenuItem(title: "退出", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q"))
-
-        statusItem.menu = menu
-    }
-
 }
 

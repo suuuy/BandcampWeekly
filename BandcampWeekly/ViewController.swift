@@ -46,9 +46,6 @@ class ViewController: NSViewController {
         playLoading.isHidden = true;
         loadingProgress.usesThreadedAnimation = true
         loadingProgress.doubleValue = 10;
-        menuButton.menu?.addItem(NSMenuItem(title: "关于", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "P"))
-        menuButton.menu?.addItem(NSMenuItem.separator())
-        menuButton.menu?.addItem(NSMenuItem(title: "退出", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q"))
     }
 
     override var representedObject: Any? {
@@ -342,6 +339,13 @@ class ViewController: NSViewController {
     }
 
     @IBAction func openSetting(_ sender: Any) {
+    }
+
+    @IBAction func showAbout(_ sender: Any) {
+    }
+
+    @IBAction func doQuit(_ sender: Any) {
+        NSApplication.shared.terminate(self)
     }
 }
 
