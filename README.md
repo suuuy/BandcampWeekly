@@ -1,5 +1,5 @@
 
-## About bandcamp Weekly
+## About Bandcamp Weekly
 
 Bandcamp Weekly  is music weekly from http://bandcamp.com/ music website
 
@@ -7,7 +7,7 @@ Bandcamp Weekly  is music weekly from http://bandcamp.com/ music website
 
 
 
-## About this project
+## About Project
 
 This project for Bandcamp Weekly App on macos, Simple interface.
 
