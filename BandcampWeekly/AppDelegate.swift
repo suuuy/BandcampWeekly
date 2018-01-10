@@ -22,7 +22,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if let button = statusItem.button {
             button.image = NSImage(named: NSImage.Name("barImage"))
             button.action = #selector(togglePopover(_:))
-            button.setButtonType(NSButton.ButtonType.multiLevelAccelerator)
         }
         var controller = ViewController.freshController();
         print(bcRequest.getData(closure: { bandcamp in
@@ -38,12 +37,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
-        // Insert code here to tear down your application
-
     }
 
     @objc func togglePopover(_ sender: NSButton?) {
-        print(sender?.action, NSEvent.pressedMouseButtons)
         if popover.isShown {
             closePopover(sender: sender)
         } else {
@@ -53,10 +49,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func showPopover(sender: Any?) {
         if let button = statusItem.button {
-            print("show popover")
             popover.show(relativeTo: button.bounds, of: button, preferredEdge: NSRectEdge.minY)
+            eventMonitor?.start()
         }
-        eventMonitor?.start()
     }
 
     func closePopover(sender: Any?) {

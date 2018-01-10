@@ -341,9 +341,6 @@ class ViewController: NSViewController {
     @IBAction func openSetting(_ sender: Any) {
     }
 
-    @IBAction func showAbout(_ sender: Any) {
-    }
-
     @IBAction func doQuit(_ sender: Any) {
         NSApplication.shared.terminate(self)
     }

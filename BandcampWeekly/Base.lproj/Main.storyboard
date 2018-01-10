@@ -792,13 +792,10 @@
                                                                             <items>
                                                                                 <menuItem image="setting" hidden="YES" id="hq0-z1-CIk">
                                                                                     <modifierMask key="keyEquivalentModifierMask"/>
-                                                                                    <connections>
-                                                                                        <action selector="showAbout:" target="XfG-lQ-9wD" id="Tkm-VY-gYw"/>
-                                                                                    </connections>
                                                                                 </menuItem>
                                                                                 <menuItem title="About" keyEquivalent="p" id="ddY-cq-VwI">
                                                                                     <connections>
-                                                                                        <action selector="showAbout:" target="XfG-lQ-9wD" id="8BW-m9-gRP"/>
+                                                                                        <segue destination="auy-Jh-BRN" kind="show" id="xZH-1L-gd0"/>
                                                                                     </connections>
                                                                                 </menuItem>
                                                                                 <menuItem title="Quit" keyEquivalent="q" id="AAo-45-Ydq">
@@ -933,8 +930,75 @@
             </objects>
             <point key="canvasLocation" x="75" y="652.5"/>
         </scene>
+        <!--Window Controller-->
+        <scene sceneID="Pgb-1I-Lvf">
+            <objects>
+                <windowController id="auy-Jh-BRN" sceneMemberID="viewController">
+                    <window key="window" title="About Bandcamp Weekly App" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" oneShot="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" titlebarAppearsTransparent="YES" id="GFV-NF-GZJ">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="425" y="461" width="309" height="182"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
+                        <connections>
+                            <outlet property="delegate" destination="auy-Jh-BRN" id="DUK-MP-vYN"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <segue destination="Sat-Bf-mXI" kind="relationship" relationship="window.shadowedContentViewController" id="fZE-Oz-VpX"/>
+                    </connections>
+                </windowController>
+                <customObject id="g5e-S5-zFL" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="96" y="914"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="UZl-sg-dTK">
+            <objects>
+                <viewController id="Sat-Bf-mXI" sceneMemberID="viewController">
+                    <view key="view" id="VEm-ba-e8d">
+                        <rect key="frame" x="0.0" y="0.0" width="280" height="150"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kte-yl-31O">
+                                <rect key="frame" x="140" y="75" width="0.0" height="0.0"/>
+                            </stackView>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eLu-b8-Tz2">
+                                <rect key="frame" x="18" y="45" width="244" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Bandcamp Weekly" id="lPa-dw-Tca">
+                                    <font key="font" metaFont="systemBold"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x9v-sH-fb5">
+                                <rect key="frame" x="18" y="20" width="244" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="version 1.0.0" id="1bs-Ny-qHn">
+                                    <font key="font" metaFont="system" size="10"/>
+                                    <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="0.84999999999999998" colorSpace="calibratedRGB"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z8x-Ef-Lws">
+                                <rect key="frame" x="51" y="61" width="179" height="83"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="bandcamp" id="uqs-LC-cli"/>
+                            </imageView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="kte-yl-31O" firstAttribute="centerY" secondItem="VEm-ba-e8d" secondAttribute="centerY" id="jCp-cI-B89"/>
+                            <constraint firstItem="kte-yl-31O" firstAttribute="centerX" secondItem="VEm-ba-e8d" secondAttribute="centerX" id="uiP-I5-cRX"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <customObject id="3hK-id-UVS" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="95" y="1358"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="bandcamp" width="175" height="175"/>
         <image name="music" width="12" height="13"/>
         <image name="setting" width="12" height="13"/>
     </resources>
