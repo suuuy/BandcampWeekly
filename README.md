@@ -1,4 +1,3 @@
-# BandcampWeekly
 
 ## About bandcamp Weekly
 
