@@ -951,10 +951,10 @@
             </objects>
             <point key="canvasLocation" x="96" y="914"/>
         </scene>
-        <!--View Controller-->
+        <!--About Controller-->
         <scene sceneID="UZl-sg-dTK">
             <objects>
-                <viewController id="Sat-Bf-mXI" sceneMemberID="viewController">
+                <viewController id="Sat-Bf-mXI" customClass="AboutController" customModule="BandcampWeekly" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="VEm-ba-e8d">
                         <rect key="frame" x="0.0" y="0.0" width="280" height="150"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -991,6 +991,9 @@
                             <constraint firstItem="kte-yl-31O" firstAttribute="centerX" secondItem="VEm-ba-e8d" secondAttribute="centerX" id="uiP-I5-cRX"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="aboutLabel" destination="1bs-Ny-qHn" id="kA3-E4-zT7"/>
+                    </connections>
                 </viewController>
                 <customObject id="3hK-id-UVS" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>

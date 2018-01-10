@@ -3,61 +3,61 @@
     {
       "size" : "16x16",
       "idiom" : "mac",
-      "filename" : "bandcamp 2.png",
+      "filename" : "bandcamp-16.png",
       "scale" : "1x"
     },
     {
       "size" : "16x16",
       "idiom" : "mac",
-      "filename" : "bandcamp 2@2x.png",
+      "filename" : "bandcamp-16@2x.png",
       "scale" : "2x"
     },
     {
       "size" : "32x32",
       "idiom" : "mac",
-      "filename" : "bandcamp 2-1.png",
+      "filename" : "bandcamp-32.png",
       "scale" : "1x"
     },
     {
       "size" : "32x32",
       "idiom" : "mac",
-      "filename" : "bandcamp 2@2x-1.png",
+      "filename" : "bandcamp-32@2x.png",
       "scale" : "2x"
     },
     {
       "size" : "128x128",
       "idiom" : "mac",
-      "filename" : "bandcamp 2-2.png",
+      "filename" : "bandcamp-128.png",
       "scale" : "1x"
     },
     {
       "size" : "128x128",
       "idiom" : "mac",
-      "filename" : "bandcamp 2@2x-2.png",
+      "filename" : "bandcamp-128@2x.png",
       "scale" : "2x"
     },
     {
       "size" : "256x256",
       "idiom" : "mac",
-      "filename" : "bandcamp 2-3.png",
+      "filename" : "bandcamp-256.png",
       "scale" : "1x"
     },
     {
       "size" : "256x256",
       "idiom" : "mac",
-      "filename" : "bandcamp 2@2x-3.png",
+      "filename" : "bandcamp-256@2x.png",
       "scale" : "2x"
     },
     {
       "size" : "512x512",
       "idiom" : "mac",
-      "filename" : "bandcamp 2-4.png",
+      "filename" : "bandcamp-512.png",
       "scale" : "1x"
     },
     {
       "size" : "512x512",
       "idiom" : "mac",
-      "filename" : "bandcamp 2@2x-4.png",
+      "filename" : "bandcamp-512@2x.png",
       "scale" : "2x"
     }
   ],
