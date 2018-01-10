@@ -14,13 +14,15 @@ This project for Bandcamp Weekly App on macos, Simple interface.
 
 ![图片](https://dn-coding-net-production-pp.qbox.me/e1c28292-f32b-418a-9407-019fc431e67b.png)
 
-## Usage
+## Dev
 
 On project forlder, install dependencies by cocoapods
 
 ```
 pod install
 ```
+
+open file `BandcampWeekly.xcworkspace` use Xcode or Appcode
 
 ## License
 This project is licensed under the terms of the MIT license.
