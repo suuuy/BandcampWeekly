@@ -16,7 +16,7 @@ This project for Bandcamp Weekly App on macos, Simple interface.
 
 ## Usage
 
-Into project forlder, install dependencies by cocopods
+On project forlder, install dependencies by cocoapods
 
 ```
 pod install
