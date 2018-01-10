@@ -20,6 +20,19 @@
 		3F4BF9E21FF5E57100E8F281 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F4BF9E01FF5E57100E8F281 /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXBuildRule section */
+		3F793BDB2006027100BF3C05 /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.llvm.clang.1_0;
+			fileType = image.png;
+			isEditable = 1;
+			outputFiles = (
+				"$(DERIVED_FILE_DIR)/myfile",
+			);
+			script = "# copypng\n";
+		};
+/* End PBXBuildRule section */
+
 /* Begin PBXFileReference section */
 		19ED0091FB3770F7DCC27371 /* BandcampModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BandcampModel.swift; sourceTree = "<group>"; };
 		19ED040FEF2CBF654A020DBC /* BandcampRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BandcampRequest.swift; sourceTree = "<group>"; };
@@ -128,6 +141,7 @@
 				3564392FA9B482683CE95666 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
+				3F793BDB2006027100BF3C05 /* PBXBuildRule */,
 			);
 			dependencies = (
 			);

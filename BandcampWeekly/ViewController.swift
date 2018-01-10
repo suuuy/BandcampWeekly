@@ -105,7 +105,7 @@ class ViewController: NSViewController {
 
     func setSliderRange(time: Float64) {
         timeSlider.minValue = 0;
-        timeSlider.maxValue = 7293.67;
+        timeSlider.maxValue = time;
     }
 
     func setAudio(streamUrl: String) {
