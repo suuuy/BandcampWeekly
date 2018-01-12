@@ -29,6 +29,7 @@ struct WeeklyModel {
     let showImageId: String
     let audioTitle: String
     let shortDesc: String
+    let imageUrl170: String
 }
 
 extension WeeklyModel {
@@ -66,6 +67,7 @@ extension WeeklyModel {
             audioStream.updateValue(data.stringValue, forKey: key)
         }
         self.audioStream = audioStream;
+        self.imageUrl170 = "https://f4.bcbits.com/img/00" + self.showV2ImageId + "_170"
     }
 
     func find(time: Double) -> TrackModel {

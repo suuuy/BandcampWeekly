@@ -85,7 +85,6 @@ class ViewController: NSViewController {
                     NSAttributedStringKey.foregroundColor: NSColor("#408ea3"),
                 ]
         )
-//        sonyNameButton.title = album.title + " / " + album.albumTitle
     }
 
     func setDateLabel() {

@@ -709,7 +709,7 @@
                                                                     <constraint firstAttribute="height" constant="58" id="olV-7p-YuJ"/>
                                                                     <constraint firstAttribute="width" constant="78" id="zjI-oc-zaH"/>
                                                                 </constraints>
-                                                                <buttonCell key="cell" type="bevel" bezelStyle="rounded" imagePosition="overlaps" alignment="center" imageScaling="proportionallyDown" inset="2" id="4e2-N0-GEl">
+                                                                <buttonCell key="cell" type="bevel" bezelStyle="rounded" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="4e2-N0-GEl">
                                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                     <font key="font" metaFont="system"/>
                                                                 </buttonCell>

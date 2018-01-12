@@ -20,6 +20,8 @@ struct TrackModel {
     let bioImageId: String
     let url: String
     let artist: String
+    let imageUrl200: String
+    let imageUrl100: String
 }
 
 extension TrackModel {
@@ -37,5 +39,7 @@ extension TrackModel {
         self.trackArtId = json["track_art_id"].stringValue
         self.url = json["url"].stringValue
         self.artist = json["artist"].stringValue
+        self.imageUrl200 = "https://f4.bcbits.com/img/00" + self.bioImageId + "_9"
+        self.imageUrl100 = "https://f4.bcbits.com/img/00" + self.bioImageId + "_6"
     }
 }
