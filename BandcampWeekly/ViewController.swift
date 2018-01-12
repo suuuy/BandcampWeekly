@@ -124,8 +124,6 @@ class ViewController: NSViewController {
                         )
                 )
         )
-
-        addPeriodicTimeObserver()
     }
 
     func getPlayerAsset(streamUrl: String) -> AVAsset {
@@ -165,27 +163,21 @@ class ViewController: NSViewController {
         playerItem.addObserver(
                 self,
                 forKeyPath: #keyPath(AVPlayerItem.status),
-                options: [.old, .new],
-                context: &playerItemContext
+                options: [.new],
+                context: nil
         )
 
-        NotificationCenter.default.addObserver(
+        // Register as an observer of the player item's status property
+        playerItem.addObserver(
                 self,
-                selector: #selector(self.onPlaybackStalled),
-                name: NSNotification.Name.AVPlayerItemPlaybackStalled,
-                object: playerItem
+                forKeyPath: #keyPath(AVPlayerItem.loadedTimeRanges),
+                options: [.new],
+                context: nil
         )
 
         return playerItem;
     }
 
-
-    @objc func onPlaybackStalled(notification: NSNotification) {
-        print("notification", notification)
-        playLoading.isHidden = false;
-        self.playButton.image = nil;
-        self.playButton.image = self.playImage;
-    }
 
     override func observeValue(
             forKeyPath keyPath: String?,
@@ -193,17 +185,6 @@ class ViewController: NSViewController {
             change: [NSKeyValueChangeKey: Any]?,
             context: UnsafeMutableRawPointer?
     ) {
-        // Only handle observations for the playerItemContext
-        guard context == &playerItemContext else {
-            super.observeValue(
-                    forKeyPath: keyPath,
-                    of: object,
-                    change: change,
-                    context: context
-            )
-            return
-        }
-
         if keyPath == #keyPath(AVPlayerItem.status) {
             let status: AVPlayerItemStatus
 
@@ -228,6 +209,13 @@ class ViewController: NSViewController {
                     // Player item is not yet ready.
             }
         }
+
+        if keyPath == #keyPath(AVPlayerItem.loadedTimeRanges) {
+            if let timeRange = change?[.newKey] as? [CMTimeRange], let range = timeRange.first as? CMTimeRange {
+                print("Buffer Time Start：", CMTimeGetSeconds(range.start));
+                print("Buffer Time Length：", CMTimeGetSeconds(range.duration));
+            }
+        }
     }
 
     func getPlayer(playerItem: AVPlayerItem) -> AVPlayer {
@@ -248,27 +236,20 @@ class ViewController: NSViewController {
             var cur = CMTimeGetSeconds(time);
             self?.timeSlider.doubleValue = cur
             self?.curAlbum = self?.weekly.find(time: cur)
-            self?.setAlbumLabel(album: (self?.curAlbum)!);
+            self?.setAlbumLabel(album: (self?.curAlbum)!)
+            print("Current Time：", cur);
         }
-        return player;
-    }
 
-    func addPeriodicTimeObserver() {
-        // Invoke callback every half second
-        let interval = CMTime(
-                seconds: 0.5,
-                preferredTimescale: CMTimeScale(NSEC_PER_SEC)
-        )
-        // Queue on which to invoke the callback
-        let mainQueue = DispatchQueue.main
-        // Add time observer
-        player.addPeriodicTimeObserver(
-                forInterval: interval,
+        self.player.addBoundaryTimeObserver(
+                forTimes: [NSValue(time: playerItem.duration)],
                 queue: mainQueue
         ) {
-            [weak self] time in
-            self?.timeSlider.doubleValue = CMTimeGetSeconds(time)
+            print("End Play");
+            self.pause()
         }
+
+
+        return player;
     }
 
     func play() {
