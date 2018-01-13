@@ -7,33 +7,60 @@
 //
 
 import Cocoa
+import SwiftyJSON
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-
+    let notificationCenter = NotificationCenter.default
+    let indicatorHolder: NSView = NSView()
     let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
+    var indicator: NSProgressIndicator?
     let popover = NSPopover()
-    let bcRequest = BandcampRequest();
+    let player = AudioPlayer()
+    let bcRequest = BandcampRequest()
     var eventMonitor: EventMonitor?
 
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        // Insert code here to initialize your application
-        if let button = statusItem.button {
-            button.image = NSImage(named: NSImage.Name("barImage"))
-            button.action = #selector(togglePopover(_:))
+
+        print(NSStatusItem.squareLength)
+
+        if statusItem.button != nil {
+            statusItem.button?.addSubview(getProgressIndicator(
+                    frame: NSRect(
+                            x: 6,
+                            y: 3,
+                            width: 18,
+                            height: NSStatusItem.squareLength
+                    ))
+            )
         }
-        var controller = ViewController.freshController();
-        print(bcRequest.getData(closure: { bandcamp in
-            controller.initData(bandcamp: bandcamp)
-            self.popover.contentViewController = controller;
-        }));
-        popover.contentViewController = controller;
-        eventMonitor = EventMonitor(mask: [.leftMouseDown, .rightMouseDown]) { [weak self] event in
-            if let strongSelf = self, strongSelf.popover.isShown {
-                strongSelf.closePopover(sender: event)
-            }
-        }
+
+        bcRequest.getData(
+                progress: { progress in
+                    print("Upload progress: \(progress)")
+                    if (progress >= 1) {
+                        self.indicator?.isHidden = true
+                    }
+                },
+                closure: { bandcamp in
+                    if let button = self.statusItem.button {
+                        button.subviews.removeAll(keepingCapacity: true)
+                        button.image = BCImage.bar
+                        button.action = #selector(self.togglePopover(_:))
+                    }
+
+                    let controller = ViewController.freshController()
+                    controller.bandcamp = bandcamp
+                    self.popover.contentViewController = controller;
+                    self.eventMonitor = EventMonitor(mask: [.leftMouseDown, .rightMouseDown]) { [weak self] event in
+                        if let strongSelf = self, strongSelf.popover.isShown {
+                            strongSelf.closePopover(sender: event)
+                        }
+                    }
+                }
+        );
+
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
@@ -57,6 +84,19 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func closePopover(sender: Any?) {
         popover.performClose(sender)
         eventMonitor?.stop()
+    }
+
+    func getProgressIndicator(frame: NSRect) -> NSProgressIndicator {
+        indicator = NSProgressIndicator(frame: frame)
+        indicator?.isBezeled = true
+        indicator?.style = NSProgressIndicator.Style.spinning
+        indicator?.controlSize = NSControl.ControlSize.small
+        indicator?.sizeToFit()
+        indicator?.usesThreadedAnimation = false
+        indicator?.startAnimation(self)
+        indicator?.increment(by: 0.01)
+
+        return indicator!;
     }
 }
 

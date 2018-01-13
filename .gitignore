@@ -160,3 +160,5 @@ fastlane/test_output
 
 Pods/Headers/
 Pods/Local Podspecs/
+
+.DS_Store

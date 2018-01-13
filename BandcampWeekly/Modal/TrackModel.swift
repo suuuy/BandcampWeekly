@@ -6,7 +6,25 @@
 import Foundation
 import SwiftyJSON
 
-struct TrackModel {
+class TrackModel: NSObject, NSCoding {
+    struct PropertyKey {
+        static let trackId = "trackId"
+        static let title = "title"
+        static let albumTitle = "albumTitle"
+        static let timecode = "timecode"
+        static let albumId = "albumId"
+        static let bandId = "bandId"
+        static let label = "label"
+        static let albumUrl = "albumUrl"
+        static let trackUrl = "trackUrl"
+        static let trackArtId = "trackArtId"
+        static let bioImageId = "bioImageId"
+        static let url = "url"
+        static let artist = "artist"
+        static let imageUrl200 = "imageUrl200"
+        static let imageUrl100 = "imageUrl100"
+    }
+
     let trackId: String
     let title: String
     let albumTitle: String
@@ -22,21 +40,56 @@ struct TrackModel {
     let artist: String
     let imageUrl200: String
     let imageUrl100: String
-}
 
-extension TrackModel {
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(trackId, forKey: PropertyKey.trackId)
+        aCoder.encode(title, forKey: PropertyKey.title)
+        aCoder.encode(albumTitle, forKey: PropertyKey.albumTitle)
+        aCoder.encode(timecode, forKey: PropertyKey.timecode)
+        aCoder.encode(albumId, forKey: PropertyKey.albumId)
+        aCoder.encode(bandId, forKey: PropertyKey.bandId)
+        aCoder.encode(label, forKey: PropertyKey.label)
+        aCoder.encode(albumUrl, forKey: PropertyKey.albumUrl)
+        aCoder.encode(trackArtId, forKey: PropertyKey.trackArtId)
+        aCoder.encode(trackUrl, forKey: PropertyKey.trackUrl)
+        aCoder.encode(bioImageId, forKey: PropertyKey.bioImageId)
+        aCoder.encode(url, forKey: PropertyKey.url)
+        aCoder.encode(artist, forKey: PropertyKey.artist)
+        aCoder.encode(imageUrl200, forKey: PropertyKey.imageUrl200)
+        aCoder.encode(imageUrl100, forKey: PropertyKey.imageUrl100)
+
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        trackId = aDecoder.decodeObject(forKey: PropertyKey.trackId) as! String
+        title = aDecoder.decodeObject(forKey: PropertyKey.title) as! String
+        albumTitle = aDecoder.decodeObject(forKey: PropertyKey.albumTitle) as! String
+        timecode = aDecoder.decodeInteger(forKey: PropertyKey.timecode)
+        albumId = aDecoder.decodeObject(forKey: PropertyKey.albumId) as! String
+        bandId = aDecoder.decodeObject(forKey: PropertyKey.bandId) as! String
+        label = aDecoder.decodeObject(forKey: PropertyKey.label) as! String
+        albumUrl = aDecoder.decodeObject(forKey: PropertyKey.albumUrl) as! String
+        trackArtId = aDecoder.decodeObject(forKey: PropertyKey.trackArtId) as! String
+        trackUrl = aDecoder.decodeObject(forKey: PropertyKey.trackUrl) as! String
+        bioImageId = aDecoder.decodeObject(forKey: PropertyKey.bioImageId) as! String
+        url = aDecoder.decodeObject(forKey: PropertyKey.url) as! String
+        artist = aDecoder.decodeObject(forKey: PropertyKey.artist) as! String
+        imageUrl200 = aDecoder.decodeObject(forKey: PropertyKey.imageUrl200) as! String
+        imageUrl100 = aDecoder.decodeObject(forKey: PropertyKey.imageUrl100) as! String
+    }
+
     init?(json: JSON) {
         self.trackId = json["track_id"].stringValue
         self.title = json["title"].stringValue
-        self.label = json["label"].stringValue
         self.albumTitle = json["album_title"].stringValue
         self.timecode = json["timecode"].intValue
         self.albumId = json["album_id"].stringValue
         self.bandId = json["band_id"].stringValue
+        self.label = json["label"].stringValue
         self.albumUrl = json["album_url"].stringValue
+        self.trackArtId = json["track_art_id"].stringValue
         self.trackUrl = json["track_url"].stringValue
         self.bioImageId = json["bio_image_id"].stringValue
-        self.trackArtId = json["track_art_id"].stringValue
         self.url = json["url"].stringValue
         self.artist = json["artist"].stringValue
         self.imageUrl200 = "https://f4.bcbits.com/img/00" + self.bioImageId + "_9"
