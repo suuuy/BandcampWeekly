@@ -25,3 +25,8 @@ open file `BandcampWeekly.xcworkspace` use Xcode or Appcode
 
 ## License
 This project is licensed under the terms of the MIT license.
+
+## Plan
+- [ ] mp3 download support 
+- [ ] weekly album list
+- [ ] weekly history list
