@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.AVKitIBPlugin" version="13771"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13771"/>
         <capability name="box content view" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -717,12 +716,18 @@
                                                                     <action selector="togglePlay:" target="XfG-lQ-9wD" id="PVW-Oy-c2q"/>
                                                                 </connections>
                                                             </button>
-                                                            <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="uFK-n9-04w">
-                                                                <rect key="frame" x="31" y="21" width="16" height="16"/>
+                                                            <progressIndicator wantsLayer="YES" focusRingType="none" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="uFK-n9-04w">
+                                                                <rect key="frame" x="0.0" y="0.0" width="78" height="58"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="58" id="ZYC-rF-Q52"/>
+                                                                    <constraint firstAttribute="width" constant="78" id="eHV-JR-Eu5"/>
+                                                                </constraints>
                                                             </progressIndicator>
                                                         </subviews>
                                                         <constraints>
+                                                            <constraint firstAttribute="trailing" secondItem="uFK-n9-04w" secondAttribute="trailing" id="4nc-Ru-fzw"/>
                                                             <constraint firstAttribute="width" constant="78" id="8Qn-VM-jzF"/>
+                                                            <constraint firstAttribute="bottom" secondItem="uFK-n9-04w" secondAttribute="bottom" id="9js-gB-Y4a"/>
                                                             <constraint firstItem="vL2-1I-Sha" firstAttribute="centerY" secondItem="Ntu-ZG-qzm" secondAttribute="centerY" id="BjQ-kx-uK4"/>
                                                             <constraint firstAttribute="height" constant="58" id="TnG-iH-cH8"/>
                                                             <constraint firstItem="vL2-1I-Sha" firstAttribute="centerX" secondItem="Ntu-ZG-qzm" secondAttribute="centerX" id="Xaq-gK-5yT"/>
@@ -845,12 +850,6 @@
                                                     <real value="3.4028234663852886e+38"/>
                                                 </customSpacing>
                                             </stackView>
-                                            <avPlayerView translatesAutoresizingMaskIntoConstraints="NO" id="xPs-eq-YZS">
-                                                <rect key="frame" x="0.0" y="15" width="400" height="0.0"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="400" id="yJM-l5-voU"/>
-                                                </constraints>
-                                            </avPlayerView>
                                             <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="I8B-kb-t0a">
                                                 <rect key="frame" x="-2" y="-2" width="404" height="19"/>
                                                 <sliderCell key="cell" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="ljY-6u-1Ik"/>
@@ -860,18 +859,14 @@
                                             </slider>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstItem="xPs-eq-YZS" firstAttribute="top" secondItem="I8B-kb-t0a" secondAttribute="top" id="6jv-9m-B7A"/>
                                             <constraint firstItem="I8B-kb-t0a" firstAttribute="trailing" secondItem="4h1-2X-7MU" secondAttribute="trailing" id="MfB-53-08C"/>
-                                            <constraint firstItem="xPs-eq-YZS" firstAttribute="leading" secondItem="I8B-kb-t0a" secondAttribute="leading" id="bOK-aA-mK3"/>
                                             <constraint firstItem="I8B-kb-t0a" firstAttribute="centerX" secondItem="4h1-2X-7MU" secondAttribute="centerX" id="p8f-f1-PTl"/>
                                         </constraints>
                                         <visibilityPriorities>
                                             <integer value="1000"/>
                                             <integer value="1000"/>
-                                            <integer value="1000"/>
                                         </visibilityPriorities>
                                         <customSpacing>
-                                            <real value="3.4028234663852886e+38"/>
                                             <real value="3.4028234663852886e+38"/>
                                             <real value="3.4028234663852886e+38"/>
                                         </customSpacing>
@@ -921,7 +916,6 @@
                         <outlet property="menuButton" destination="pSj-o7-I85" id="Pgl-qs-23k"/>
                         <outlet property="playButton" destination="vL2-1I-Sha" id="bkD-7a-d57"/>
                         <outlet property="playLoading" destination="uFK-n9-04w" id="04T-Vm-xrV"/>
-                        <outlet property="playerView" destination="xPs-eq-YZS" id="CN2-mZ-0Yz"/>
                         <outlet property="sonyNameButton" destination="JTB-Dm-q4O" id="lKA-qP-Lea"/>
                         <outlet property="timeSlider" destination="I8B-kb-t0a" id="lCI-tZ-Bhg"/>
                     </connections>

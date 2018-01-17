@@ -14,6 +14,7 @@ import SwiftDate
 
 class ViewController: NSViewController {
 
+    let notificationCenter = NotificationCenter.default
 
     @IBOutlet weak var bandcampLabel: NSTextFieldCell!
     @IBOutlet weak var dateLabel: NSTextFieldCell!
@@ -21,31 +22,52 @@ class ViewController: NSViewController {
     @IBOutlet weak var mainView: NSStackView!
     @IBOutlet weak var loadingView: NSStackView!
     @IBOutlet weak var playButton: NSButton!
-    @IBOutlet weak var playerView: AVPlayerView!
     @IBOutlet weak var timeSlider: NSSlider!
     @IBOutlet weak var playLoading: NSProgressIndicator!
     @IBOutlet weak var loadingProgress: NSProgressIndicator!
     @IBOutlet weak var menuButton: NSPopUpButton!
-    var playImage = NSImage(named: NSImage.Name("Play"))
-    var pauseImage = NSImage(named: NSImage.Name("Pause"))
-    var playerAsset: AVAsset!
-    var playerItem: AVPlayerItem!
-    var player: AVPlayer!
-    var playing: Bool = false
-    var playerItemContext = UnsafeMutableRawPointer.allocate(bytes: 4, alignedTo: 1)
-    var totalTime: Float64!
     var bandcamp: BandcampModel!
     var weekly: WeeklyModel!
     var curAlbum: TrackModel!
+    var notifications = [
+        NSNotification.Name.BCPlayerLoaded,
+        NSNotification.Name.BCPlayerReady,
+        NSNotification.Name.BCPlayerDuration,
+        NSNotification.Name.BCPlayerFailed,
+        NSNotification.Name.BCPlayerLoadingRange,
+        NSNotification.Name.BCPlayerPlaying,
+        NSNotification.Name.BCPlayerPlayed,
+        NSNotification.Name.BCPlayerPaused,
+    ]
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        mainView.isHidden = true;
-        loadingView.isHidden = false;
-        playButton.isEnabled = false;
-        playLoading.isHidden = true;
-        loadingProgress.usesThreadedAnimation = true
-        loadingProgress.doubleValue = 10;
+        print("view did load")
+        mainView.isHidden = true
+        loadingView.isHidden = false
+        playButton.isHidden = true
+        playButton.image = BCImage.play
+        timeSlider.maxValue = 0
+        timeSlider.doubleValue = 0
+        timeSlider.minValue = 0
+        playLoading.isHidden = false
+        playLoading.usesThreadedAnimation = true
+        playLoading.increment(by: 0.01)
+        playLoading.startAnimation(self)
+        playLoading.isBezeled = true
+        playLoading.style = NSProgressIndicator.Style.spinning
+        playLoading.controlSize = NSControl.ControlSize.small
+        playLoading.sizeToFit()
+        notifications.forEach {
+            name in
+            notificationCenter.addObserver(
+                    self,
+                    selector: #selector(observerNotification),
+                    name: name,
+                    object: nil
+            )
+        }
+        initData()
     }
 
     override var representedObject: Any? {
@@ -66,8 +88,7 @@ class ViewController: NSViewController {
         return viewcontroller
     }
 
-    func initData(bandcamp: BandcampModel) {
-        self.bandcamp = bandcamp
+    func initData() {
         weekly = bandcamp.show
         setDateLabel()
         setAlbumLabel(
@@ -75,7 +96,14 @@ class ViewController: NSViewController {
         )
         setButton();
         print("parse weekly audio steam", weekly.audioStream)
-        setAudio(streamUrl: (weekly.audioStream["mp3-128"])!)
+        DispatchQueue.main.async {
+            self.notificationCenter.post(
+                    name: NSNotification.Name.BCPlayerInit,
+                    object: (self.weekly.audioStream["mp3-128"])!
+            )
+        }
+        mainView.isHidden = false
+        loadingView.isHidden = true;
     }
 
     func setAlbumLabel(album: TrackModel) {
@@ -88,7 +116,7 @@ class ViewController: NSViewController {
     }
 
     func setDateLabel() {
-        bandcampLabel.textColor = NSColor(weekly.buttonColor)!
+        bandcampLabel.textColor = NSColor(weekly.buttonColor)
         dateLabel.title = (try weekly.publishedDate.date(
                 format: .rss(alt: true)
         )?.string(custom: "yyyy-MM-dd"))!
@@ -98,198 +126,60 @@ class ViewController: NSViewController {
         playButton.isBordered = false //Important
         playButton.wantsLayer = true
         playButton.layer?.backgroundColor = NSColor(weekly.buttonColor)?.cgColor
-        print(playButton.layer?.backgroundColor)
+
+        playLoading.wantsLayer = true
+        playLoading.layer?.backgroundColor = NSColor(weekly.buttonColor)?.cgColor
         print(weekly.buttonColor)
     }
 
-    func setSliderRange(time: Float64) {
-        timeSlider.minValue = 0;
-        timeSlider.maxValue = time;
-    }
+    @objc func observerNotification(notification: NSNotification) {
 
-    func setAudio(streamUrl: String) {
-
-        print("Starting bandcamp weekly from : {} ", streamUrl)
-
-        loadingProgress.doubleValue = 50;
-
-        mainView.isHidden = false
-        loadingView.isHidden = true;
-
-        player = getPlayer(
-                playerItem: getPlayerItem(
-                        playerAsset: getPlayerAsset(
-                                streamUrl: streamUrl
-                        )
-                )
-        )
-    }
-
-    func getPlayerAsset(streamUrl: String) -> AVAsset {
-        playerAsset = AVAsset(url: URL(string: streamUrl)!)
-        setSliderRange(time: CMTimeGetSeconds(playerAsset.duration))
-        playerAsset.loadValuesAsynchronously(forKeys: ["playable"]) {
-            var error: NSError? = nil
-            let status = self.playerAsset.statusOfValue(forKey: "playable", error: &error)
-            switch status {
-            case .loading:
-                self.playLoading.isHidden = false;
-                NSLog("loading bandcamp weekly ")
-            case .loaded:
-                NSLog("loaded bandcamp weekly ")
-                self.playButton.isEnabled = true;
-                self.playButton.image = self.playImage;
-            case .cancelled:
-                NSLog("load canceled bandcamp weekly ")
-                self.playButton.isEnabled = false;
-            case .failed:
-                NSLog("load failed bandcamp weekly  ")
-                self.playButton.isEnabled = false;
-            default:
-                self.playButton.isEnabled = true;
+        switch notification.name {
+        case NSNotification.Name.BCPlayerDuration:
+            timeSlider.minValue = 0;
+            timeSlider.maxValue = notification.object as! Double;
+            print("Duration : ", timeSlider.maxValue)
+        case NSNotification.Name.BCPlayerReady:
+            self.playLoading.isHidden = true;
+            self.playButton.isHidden = false;
+            print("Play Ready...")
+        case NSNotification.Name.BCPlayerLoaded:
+            self.playButton.isEnabled = true;
+            print("Play Loaded...")
+        case NSNotification.Name.BCPlayerLoadingRange:
+            if let range = notification.object as? CMTimeRange {
+                print("Buffer Time From：", CMTimeGetSeconds(range.start), " range ", CMTimeGetSeconds(range.duration));
             }
-        }
-        return playerAsset;
-    }
-
-    func getPlayerItem(playerAsset: AVAsset) -> AVPlayerItem {
-        playerItem = AVPlayerItem(asset: playerAsset)
-        playerItem.preferredForwardBufferDuration = 60 * 20;
-        playerItem.preferredPeakBitRate = 1000 * 1000 * 2;
-        playerItem.canUseNetworkResourcesForLiveStreamingWhilePaused = true;
-
-        // Register as an observer of the player item's status property
-        playerItem.addObserver(
-                self,
-                forKeyPath: #keyPath(AVPlayerItem.status),
-                options: [.new],
-                context: nil
-        )
-
-        // Register as an observer of the player item's status property
-        playerItem.addObserver(
-                self,
-                forKeyPath: #keyPath(AVPlayerItem.loadedTimeRanges),
-                options: [.new],
-                context: nil
-        )
-
-        return playerItem;
-    }
-
-
-    override func observeValue(
-            forKeyPath keyPath: String?,
-            of object: Any?,
-            change: [NSKeyValueChangeKey: Any]?,
-            context: UnsafeMutableRawPointer?
-    ) {
-        if keyPath == #keyPath(AVPlayerItem.status) {
-            let status: AVPlayerItemStatus
-
-            // Get the status change from the change dictionary
-            if let statusNumber = change?[.newKey] as? NSNumber {
-                status = AVPlayerItemStatus(rawValue: statusNumber.intValue)!
-            } else {
-                status = .unknown
+        case NSNotification.Name.BCPlayerPlaying:
+            if var cur = notification.object as? Double {
+                print("Current: ", cur)
+                timeSlider.doubleValue = cur
+                curAlbum = weekly.find(time: cur)
+                setAlbumLabel(album: (curAlbum)!)
             }
-
-            // Switch over the status
-            switch status {
-            case .readyToPlay:
-                self.playLoading.isHidden = true;
-                self.playButton.image = playImage;
-                    // Player item is ready to play.
-            case .failed:
-                print("failed to play")
-                    // Player item failed. See error.
-            case .unknown:
-                print("unknown to play")
-                    // Player item is not yet ready.
-            }
+        case NSNotification.Name.BCPlayerPlayed:
+            playLoading.isHidden = true;
+            playButton.image = BCImage.pause;
+            print("Play Played...")
+        case NSNotification.Name.BCPlayerPaused:
+            playLoading.isHidden = true;
+            playButton.image = BCImage.play;
+            print("Play Paused...")
+        case NSNotification.Name.BCPlayerFinished:
+            notificationCenter.post(
+                    name: NSNotification.Name.BCPlayerPause,
+                    object: nil
+            )
+            print("Play Finished...")
+        default:
+            print("")
         }
-
-        if keyPath == #keyPath(AVPlayerItem.loadedTimeRanges) {
-            if let timeRange = change?[.newKey] as? [CMTimeRange], let range = timeRange.first as? CMTimeRange {
-                print("Buffer Time Start：", CMTimeGetSeconds(range.start));
-                print("Buffer Time Length：", CMTimeGetSeconds(range.duration));
-            }
-        }
-    }
-
-    func getPlayer(playerItem: AVPlayerItem) -> AVPlayer {
-        player = AVPlayer(playerItem: playerItem);
-        playerView.player = player
-
-        // add time observer
-        let interval = CMTime(
-                seconds: 0.5,
-                preferredTimescale: CMTimeScale(NSEC_PER_SEC)
-        )
-        let mainQueue = DispatchQueue.main
-        player.addPeriodicTimeObserver(
-                forInterval: interval,
-                queue: mainQueue
-        ) {
-            [weak self] time in
-            var cur = CMTimeGetSeconds(time);
-            self?.timeSlider.doubleValue = cur
-            self?.curAlbum = self?.weekly.find(time: cur)
-            self?.setAlbumLabel(album: (self?.curAlbum)!)
-            print("Current Time：", cur);
-        }
-
-        self.player.addBoundaryTimeObserver(
-                forTimes: [NSValue(time: playerItem.duration)],
-                queue: mainQueue
-        ) {
-            print("End Play");
-            self.pause()
-        }
-
-
-        return player;
-    }
-
-    func play() {
-        if playing {
-            return
-        }
-        print(playerItem.asset.isPlayable)
-        if !playerItem.asset.isPlayable {
-            playButton.image = nil;
-            playLoading.isHidden = false;
-        }
-        playLoading.isHidden = true;
-        player.play()
-        playing = !playing
-        playButton.image = playing ? pauseImage : playImage;
-    }
-
-    func pause() {
-        if !playing {
-            return
-        }
-        player.pause()
-        playing = !playing
-        playButton.image = playing ? pauseImage : playImage;
     }
 
     @IBAction func sliderChange(_ sender: NSSlider) {
-        pause()
-        player.seek(
-                to: CMTime(
-                        seconds: sender.doubleValue,
-                        preferredTimescale: CMTimeScale(NSEC_PER_SEC)
-                ),
-                completionHandler: { success in
-                    if (success) {
-                        print("seek success playing to ", sender.doubleValue)
-                    } else {
-                        print("seek failed playing to ", sender.doubleValue)
-                    }
-                    self.play();
-                }
+        notificationCenter.post(
+                name: NSNotification.Name.BCPlayerSeek,
+                object: sender.doubleValue
         )
     }
 
@@ -310,12 +200,10 @@ class ViewController: NSViewController {
     }
 
     @IBAction func togglePlay(_ sender: Any) {
-        if playing {
-            pause()
-        } else {
-            play()
-        }
-        print("toggle playing to ", playing)
+        notificationCenter.post(
+                name: NSNotification.Name.BCPlayerToggle,
+                object: nil
+        )
     }
 
     @IBAction func openSetting(_ sender: Any) {
@@ -324,5 +212,6 @@ class ViewController: NSViewController {
     @IBAction func doQuit(_ sender: Any) {
         NSApplication.shared.terminate(self)
     }
+
 }
 
