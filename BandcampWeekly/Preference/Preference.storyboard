@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="I19-EE-I9X">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13771"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Window Controller-->
+        <scene sceneID="FMd-zj-ViV">
+            <objects>
+                <windowController id="I19-EE-I9X" customClass="PreferenceWindowController" customModule="BandcampWeekly" customModuleProvider="target" sceneMemberID="viewController">
+                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="hSR-b7-oEL">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="998" y="657" width="480" height="280"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
+                        <connections>
+                            <outlet property="delegate" destination="I19-EE-I9X" id="7OP-b7-BgQ"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <segue destination="5qu-N3-hnD" kind="relationship" relationship="window.shadowedContentViewController" id="Hia-Cs-qWO"/>
+                    </connections>
+                </windowController>
+                <customObject id="SU9-5X-O04" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-37" y="53"/>
+        </scene>
+        <!--Tab View Controller-->
+        <scene sceneID="Fhx-0i-YHv">
+            <objects>
+                <tabViewController selectedTabViewItemIndex="0" tabStyle="toolbar" id="5qu-N3-hnD" sceneMemberID="viewController">
+                    <tabViewItems>
+                        <tabViewItem identifier="" image="NSInfo" id="oU6-Iw-Ces"/>
+                        <tabViewItem identifier="" image="NSAdvanced" id="lPO-og-PTn"/>
+                    </tabViewItems>
+                    <viewControllerTransitionOptions key="transitionOptions" allowUserInteraction="YES"/>
+                    <tabView key="tabView" type="noTabsNoBorder" id="cni-hM-2Go">
+                        <rect key="frame" x="0.0" y="0.0" width="425" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <font key="font" metaFont="message"/>
+                        <tabViewItems/>
+                        <connections>
+                            <outlet property="delegate" destination="5qu-N3-hnD" id="dgw-kQ-Lde"/>
+                        </connections>
+                    </tabView>
+                    <connections>
+                        <outlet property="tabView" destination="cni-hM-2Go" id="x7z-zd-4Kw"/>
+                        <segue destination="uXl-xD-5KC" kind="relationship" relationship="tabItems" id="FGH-7d-6zL"/>
+                        <segue destination="2Rb-Az-PAu" kind="relationship" relationship="tabItems" id="Dsh-FB-K8A"/>
+                    </connections>
+                </tabViewController>
+                <customObject id="AHP-5Q-Oav" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-49.5" y="537"/>
+        </scene>
+        <!--Downloading-->
+        <scene sceneID="h3a-Sw-1C1">
+            <objects>
+                <viewController title="Downloading" id="uXl-xD-5KC" customClass="DownloadingViewController" customModule="BandcampWeekly" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="5gC-8a-Q68">
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="280"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <scrollView autoresizesSubviews="NO" wantsLayer="YES" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" verticalScrollElasticity="allowed" findBarPosition="aboveHorizontalRuler" translatesAutoresizingMaskIntoConstraints="NO" id="dCk-VX-Gja">
+                                <rect key="frame" x="0.0" y="0.0" width="480" height="280"/>
+                                <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="niZ-at-YrA">
+                                    <rect key="frame" x="1" y="1" width="478" height="278"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <collectionView autoresizesSubviews="NO" selectable="YES" allowsEmptySelection="NO" id="lRS-2W-3b6">
+                                            <rect key="frame" x="0.0" y="0.0" width="478" height="158"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
+                                            <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="10" minimumLineSpacing="10">
+                                                <size key="itemSize" width="458" height="40"/>
+                                            </collectionViewFlowLayout>
+                                            <color key="primaryBackgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                            <connections>
+                                                <outlet property="dataSource" destination="uXl-xD-5KC" id="3qa-sv-a1f"/>
+                                            </connections>
+                                        </collectionView>
+                                    </subviews>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </clipView>
+                                <edgeInsets key="contentInsets" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
+                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="fJd-pj-yhA">
+                                    <rect key="frame" x="-100" y="-100" width="233" height="15"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="lgF-GJ-50s">
+                                    <rect key="frame" x="234" y="1" width="15" height="143"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                            </scrollView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="dCk-VX-Gja" secondAttribute="trailing" id="09M-6Q-XEu"/>
+                            <constraint firstAttribute="bottom" secondItem="dCk-VX-Gja" secondAttribute="bottom" id="7g5-LE-2jP"/>
+                            <constraint firstItem="dCk-VX-Gja" firstAttribute="centerY" secondItem="5gC-8a-Q68" secondAttribute="centerY" id="Qa8-Lb-BAf"/>
+                            <constraint firstItem="dCk-VX-Gja" firstAttribute="centerX" secondItem="5gC-8a-Q68" secondAttribute="centerX" id="QlC-5Z-8K6"/>
+                            <constraint firstItem="dCk-VX-Gja" firstAttribute="top" secondItem="5gC-8a-Q68" secondAttribute="top" id="q4S-WL-eV0"/>
+                            <constraint firstItem="dCk-VX-Gja" firstAttribute="leading" secondItem="5gC-8a-Q68" secondAttribute="leading" id="rqI-uZ-Zvd"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="collectionView" destination="lRS-2W-3b6" id="uUH-5b-Pho"/>
+                    </connections>
+                </viewController>
+                <customObject id="yhL-I6-7el" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="577" y="291"/>
+        </scene>
+        <!--Setting-->
+        <scene sceneID="6qq-wU-5bC">
+            <objects>
+                <viewController title="Setting" id="2Rb-Az-PAu" customClass="SettingViewController" customModule="BandcampWeekly" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="EBJ-H6-lsl">
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="180"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </view>
+                </viewController>
+                <customObject id="tAb-8N-kw4" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="577" y="719"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="NSAdvanced" width="32" height="32"/>
+        <image name="NSInfo" width="32" height="32"/>
+    </resources>
+</document>

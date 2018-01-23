@@ -23,8 +23,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
 
-        print(NSStatusItem.squareLength)
-
         if statusItem.button != nil {
             statusItem.button?.addSubview(getProgressIndicator(
                     frame: NSRect(
@@ -38,7 +36,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         bcRequest.getData(
                 progress: { progress in
-                    print("Upload progress: \(progress)")
                     if (progress >= 1) {
                         self.indicator?.isHidden = true
                     }
@@ -60,7 +57,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                     }
                 }
         );
-
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {

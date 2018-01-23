@@ -8,5 +8,6 @@ target 'BandcampWeekly' do
   pod 'SwiftyJSON'
   pod 'HexColors'
   pod 'SwiftDate'
-  pod 'FontAwesome.swift'
+  pod 'STRegex'
+  pod 'OrderedSet'
 end

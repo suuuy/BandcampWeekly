@@ -162,3 +162,5 @@ Pods/Headers/
 Pods/Local Podspecs/
 
 .DS_Store
+
+.history
