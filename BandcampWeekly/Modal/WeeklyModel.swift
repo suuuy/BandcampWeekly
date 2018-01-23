@@ -91,7 +91,9 @@ class WeeklyModel: NSObject, NSCoding {
     }
 
     func find(time: Double) -> TrackModel {
-        return tracks.filter {
+        return tracks.sorted {
+            $0.timecode > $1.timecode
+        }.filter {
             Double($0.timecode) <= time
         }.first!
     }

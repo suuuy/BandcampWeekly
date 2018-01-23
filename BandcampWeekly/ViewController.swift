@@ -277,6 +277,13 @@ extension ViewController: NSCollectionViewDelegate {
                     name: NSNotification.Name.BCPlayerSeek,
                     object: item.model?.timecode
             )
+            item.hover()
+        }
+    }
+
+    func collectionView(_ collectionView: NSCollectionView, didDeselectItemsAt indexPaths: Set<IndexPath>) {
+        if let item = collectionView.item(at: indexPaths.first!) as? TrackItem {
+            item.normal()
         }
     }
 }

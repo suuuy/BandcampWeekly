@@ -185,12 +185,10 @@ class AudioPlayer: NSObject {
                     queue: DispatchQueue.main
             ) {
                 [weak self] time in
-                if (self?.playing)! {
-                    self?.notificationCenter.post(
-                            name: NSNotification.Name.BCPlayerPlaying,
-                            object: CMTimeGetSeconds(time)
-                    )
-                }
+                self?.notificationCenter.post(
+                        name: NSNotification.Name.BCPlayerPlaying,
+                        object: CMTimeGetSeconds(time)
+                )
             }
 
             self.player.addBoundaryTimeObserver(

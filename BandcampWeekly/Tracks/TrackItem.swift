@@ -30,6 +30,8 @@ class TrackItem: NSCollectionViewItem {
                 1
         )
         self.view.layer?.addSublayer(border)
+        trackName.backgroundColor = NSColor.clear
+        byName.backgroundColor = NSColor.clear
         render()
     }
 
@@ -49,4 +51,13 @@ class TrackItem: NSCollectionViewItem {
         byName.title = "By \(model!.artist)"
     }
 
+    func hover() {
+        self.view.wantsLayer = true
+        self.view.layer?.backgroundColor = BCColor.hover?.cgColor
+    }
+
+    func normal() {
+        self.view.wantsLayer = true
+        self.view.layer?.backgroundColor = BCColor.white?.cgColor
+    }
 }
