@@ -24,7 +24,6 @@ class BandcampRequest {
             progress: @escaping (_: Double) -> Void,
             closure: @escaping (_: BandcampModel) -> Void
     ) -> Self {
-
         var model = BandcampModel.unarchived()
 
         if nil != model {

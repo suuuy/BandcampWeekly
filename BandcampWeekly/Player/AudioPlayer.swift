@@ -185,10 +185,12 @@ class AudioPlayer: NSObject {
                     queue: DispatchQueue.main
             ) {
                 [weak self] time in
-                self?.notificationCenter.post(
-                        name: NSNotification.Name.BCPlayerPlaying,
-                        object: CMTimeGetSeconds(time)
-                )
+                if (self?.playing)! {
+                    self?.notificationCenter.post(
+                            name: NSNotification.Name.BCPlayerPlaying,
+                            object: CMTimeGetSeconds(time)
+                    )
+                }
             }
 
             self.player.addBoundaryTimeObserver(
@@ -254,11 +256,11 @@ class AudioPlayer: NSObject {
                     ),
                     completionHandler: { success in
                         if (success) {
+                            self.play();
                             print("seek success playing to ", time)
                         } else {
                             print("seek failed playing to ", time)
                         }
-                        self.play();
                     }
             )
         }

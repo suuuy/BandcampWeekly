@@ -70,8 +70,6 @@ extension DownloadingViewController: NSCollectionViewDataSource {
             return item
         }
 
-        print(" Render Item ", indexPath.section, indexPath.item)
-
         // 5
         collectionViewItem.model = self.items[indexPath.item]
         collectionViewItem.index = indexPath

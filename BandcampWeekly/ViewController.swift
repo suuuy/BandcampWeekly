@@ -260,12 +260,24 @@ extension ViewController: NSCollectionViewDataSource {
             return item
         }
 
-        print(" Render Item ", indexPath.section, indexPath.item)
-
         // 5
         trackItem.model = self.weekly.tracks[indexPath.item]
         trackItem.index = indexPath
         return item
+    }
+}
+
+
+extension ViewController: NSCollectionViewDelegate {
+    func collectionView(_ collectionView: NSCollectionView, didSelectItemsAt indexPaths: Set<IndexPath>) {
+        if let item = collectionView.item(at: indexPaths.first!) as? TrackItem {
+            setAlbumLabel(album: item.model!)
+            self.timeSlider.doubleValue = Double((item.model?.timecode)!)
+            self.notificationCenter.post(
+                    name: NSNotification.Name.BCPlayerSeek,
+                    object: item.model?.timecode
+            )
+        }
     }
 }
 

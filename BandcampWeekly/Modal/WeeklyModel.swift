@@ -79,7 +79,7 @@ class WeeklyModel: NSObject, NSCoding {
             tracks.append(track)
         }
         self.tracks = tracks.sorted {
-            $0.timecode > $1.timecode
+            $0.timecode < $1.timecode
         }
 
         var audioStream = [String: String]()

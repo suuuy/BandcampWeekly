@@ -23,6 +23,7 @@ class TrackModel: NSObject, NSCoding {
         static let artist = "artist"
         static let imageUrl200 = "imageUrl200"
         static let imageUrl100 = "imageUrl100"
+        static let trackArtImage = "trackArtImage"
     }
 
     let trackId: String
@@ -40,6 +41,7 @@ class TrackModel: NSObject, NSCoding {
     let artist: String
     let imageUrl200: String
     let imageUrl100: String
+    let trackArtImage: String
 
     func encode(with aCoder: NSCoder) {
         aCoder.encode(trackId, forKey: PropertyKey.trackId)
@@ -57,6 +59,7 @@ class TrackModel: NSObject, NSCoding {
         aCoder.encode(artist, forKey: PropertyKey.artist)
         aCoder.encode(imageUrl200, forKey: PropertyKey.imageUrl200)
         aCoder.encode(imageUrl100, forKey: PropertyKey.imageUrl100)
+        aCoder.encode(trackArtImage, forKey: PropertyKey.trackArtImage)
 
     }
 
@@ -76,6 +79,7 @@ class TrackModel: NSObject, NSCoding {
         artist = aDecoder.decodeObject(forKey: PropertyKey.artist) as! String
         imageUrl200 = aDecoder.decodeObject(forKey: PropertyKey.imageUrl200) as! String
         imageUrl100 = aDecoder.decodeObject(forKey: PropertyKey.imageUrl100) as! String
+        trackArtImage = aDecoder.decodeObject(forKey: PropertyKey.trackArtImage) as! String
     }
 
     init?(json: JSON) {
@@ -94,5 +98,6 @@ class TrackModel: NSObject, NSCoding {
         self.artist = json["artist"].stringValue
         self.imageUrl200 = "https://f4.bcbits.com/img/00" + self.bioImageId + "_9"
         self.imageUrl100 = "https://f4.bcbits.com/img/00" + self.bioImageId + "_6"
+        self.trackArtImage = "https://f4.bcbits.com/img/a0" + self.trackArtId + "_13"
     }
 }
