@@ -20,15 +20,16 @@ class ViewController: NSViewController {
     @IBOutlet weak var dateLabel: NSTextFieldCell!
     @IBOutlet weak var sonyNameButton: NSButton!
     @IBOutlet weak var mainView: NSStackView!
-    @IBOutlet weak var loadingView: NSStackView!
     @IBOutlet weak var playButton: NSButton!
     @IBOutlet weak var timeSlider: NSSlider!
     @IBOutlet weak var playLoading: NSProgressIndicator!
     @IBOutlet weak var loadingProgress: NSProgressIndicator!
     @IBOutlet weak var menuButton: NSPopUpButton!
+    var preferenceController: PreferenceWindowController?
+    let bandcampRequest: BandcampRequest = BandcampRequest()
     var bandcamp: BandcampModel!
     var weekly: WeeklyModel!
-    var curAlbum: TrackModel!
+    var curTrack: TrackModel!
     var notifications = [
         NSNotification.Name.BCPlayerLoaded,
         NSNotification.Name.BCPlayerReady,
@@ -44,7 +45,6 @@ class ViewController: NSViewController {
         super.viewDidLoad()
         print("view did load")
         mainView.isHidden = true
-        loadingView.isHidden = false
         playButton.isHidden = true
         playButton.image = BCImage.play
         timeSlider.maxValue = 0
@@ -58,14 +58,18 @@ class ViewController: NSViewController {
         playLoading.style = NSProgressIndicator.Style.spinning
         playLoading.controlSize = NSControl.ControlSize.small
         playLoading.sizeToFit()
-        notifications.forEach {
-            name in
-            notificationCenter.addObserver(
-                    self,
-                    selector: #selector(observerNotification),
-                    name: name,
-                    object: nil
-            )
+
+
+        DispatchQueue.main.async {
+            self.notifications.forEach {
+                name in
+                self.notificationCenter.addObserver(
+                        self,
+                        selector: #selector(self.observerNotification),
+                        name: name,
+                        object: nil
+                )
+            }
         }
         initData()
     }
@@ -90,20 +94,20 @@ class ViewController: NSViewController {
 
     func initData() {
         weekly = bandcamp.show
+        curTrack = (weekly.tracks.first)!
         setDateLabel()
         setAlbumLabel(
-                album: (weekly.tracks.first)!
+                album: curTrack
         )
         setButton();
-        print("parse weekly audio steam", weekly.audioStream)
+        mainView.isHidden = false
         DispatchQueue.main.async {
+            print("parse weekly audio steam", self.weekly.audioStream)
             self.notificationCenter.post(
                     name: NSNotification.Name.BCPlayerInit,
                     object: (self.weekly.audioStream["mp3-128"])!
             )
         }
-        mainView.isHidden = false
-        loadingView.isHidden = true;
     }
 
     func setAlbumLabel(album: TrackModel) {
@@ -148,14 +152,15 @@ class ViewController: NSViewController {
             print("Play Loaded...")
         case NSNotification.Name.BCPlayerLoadingRange:
             if let range = notification.object as? CMTimeRange {
-                print("Buffer Time From：", CMTimeGetSeconds(range.start), " range ", CMTimeGetSeconds(range.duration));
+                // TODO: add buffer time show
+//                print("Buffer Time From：", CMTimeGetSeconds(range.start), " range ", CMTimeGetSeconds(range.duration));
             }
         case NSNotification.Name.BCPlayerPlaying:
             if var cur = notification.object as? Double {
-                print("Current: ", cur)
+//                print("Current: ", cur)
                 timeSlider.doubleValue = cur
-                curAlbum = weekly.find(time: cur)
-                setAlbumLabel(album: (curAlbum)!)
+                curTrack = weekly.find(time: cur)
+                setAlbumLabel(album: (curTrack)!)
             }
         case NSNotification.Name.BCPlayerPlayed:
             playLoading.isHidden = true;
@@ -184,7 +189,7 @@ class ViewController: NSViewController {
     }
 
     @IBAction func openLink(_ sender: Any) {
-        if NSWorkspace.shared.open(URL(string: curAlbum.albumUrl)!) {
+        if NSWorkspace.shared.open(URL(string: curTrack.albumUrl)!) {
             print("default browser was successfully opened")
         } else {
             print("default browser was failed opened")
@@ -192,10 +197,22 @@ class ViewController: NSViewController {
     }
 
     @IBAction func openTrack(_ sender: Any) {
-        if NSWorkspace.shared.open(URL(string: curAlbum.trackUrl)!) {
+        if NSWorkspace.shared.open(URL(string: curTrack.trackUrl)!) {
             print("default browser was successfully opened")
         } else {
             print("default browser was failed opened")
+        }
+    }
+
+    @IBAction func openDownload(_ sender: Any) {
+        if curTrack != nil {
+            self.showPreference(sender)
+            DispatchQueue.main.async {
+                self.notificationCenter.post(
+                        name: NSNotification.Name.DownLoadingAdd,
+                        object: self.curTrack
+                )
+            }
         }
     }
 
@@ -211,6 +228,17 @@ class ViewController: NSViewController {
 
     @IBAction func doQuit(_ sender: Any) {
         NSApplication.shared.terminate(self)
+    }
+
+    @IBAction func showPreference(_ sender: Any) {
+        if preferenceController == nil {
+            let storyboard = NSStoryboard(name: NSStoryboard.Name(rawValue: "Preference"), bundle: nil)
+            preferenceController = storyboard.instantiateInitialController() as? PreferenceWindowController
+        }
+
+        if preferenceController != nil {
+            preferenceController?.showWindow(sender)
+        }
     }
 
 }

@@ -9,19 +9,29 @@
 /* Begin PBXBuildFile section */
 		0BAFC765AFAF1A8CBFCCA304 /* Pods_BandcampWeekly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49A5148843CCC13C99A92FB7 /* Pods_BandcampWeekly.framework */; };
 		19ED0167DFB94B920F2BA024 /* BandcampRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ED040FEF2CBF654A020DBC /* BandcampRequest.swift */; };
+		19ED0297233523E137472473 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ED01AA559B1F9AAF0159FD /* SettingViewController.swift */; };
 		19ED02CB7914D8199BC99789 /* PlayerNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ED0E50C7F1B340975D8455 /* PlayerNotification.swift */; };
+		19ED047F3DC281F5D8E3260E /* DownloadingNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ED0939CEEFD12C6693B8D1 /* DownloadingNotification.swift */; };
 		19ED04FAFEFDEE5EE82D33DD /* BandcampModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ED0091FB3770F7DCC27371 /* BandcampModel.swift */; };
+		19ED058EDD519F24218BE8BC /* DownloadingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ED027F21F5BB19A12640B4 /* DownloadingModel.swift */; };
 		19ED05A2BD1D953AA06B5228 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ED081D1D57BD3C8A85CAA6 /* AudioPlayer.swift */; };
+		19ED0653E32AD43A159EF58F /* NSImageResize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ED02CDD06F0BF088797BBA /* NSImageResize.swift */; };
 		19ED065BC7DC72D3F5B47770 /* BCImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ED089E569B094F77941468 /* BCImage.swift */; };
 		19ED06EC04709438957A5CF9 /* AboutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ED0699F48EA465C2CFC563 /* AboutController.swift */; };
 		19ED074DC385D7A5CB8FF5A7 /* WeeklyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ED04C1101BC310233BA9CC /* WeeklyModel.swift */; };
 		19ED07F303348CA6D75A76E0 /* BCColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ED0324E303C5EB0BF3488C /* BCColor.swift */; };
+		19ED0C4C345A5F90E260A3C8 /* PreferenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ED01EEE3992DF0216749CC /* PreferenceViewController.swift */; };
 		19ED0C7023394CCF6F566833 /* EventMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ED0C645E4A781955BCF591 /* EventMonitor.swift */; };
 		19ED0EF11AB2286CFCBE9530 /* TrackModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ED0DB4F4626CC454F7DC96 /* TrackModel.swift */; };
+		19ED0F82A63EFDA9A9AC323A /* DownloadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ED030C9CA8179CA6E6A531 /* DownloadingViewController.swift */; };
 		3F4BF9DB1FF5E57100E8F281 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4BF9DA1FF5E57100E8F281 /* AppDelegate.swift */; };
 		3F4BF9DD1FF5E57100E8F281 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4BF9DC1FF5E57100E8F281 /* ViewController.swift */; };
 		3F4BF9DF1FF5E57100E8F281 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F4BF9DE1FF5E57100E8F281 /* Assets.xcassets */; };
 		3F4BF9E21FF5E57100E8F281 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F4BF9E01FF5E57100E8F281 /* Main.storyboard */; };
+		3F78E58520104C380025D4EB /* Preference.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F78E58420104C380025D4EB /* Preference.storyboard */; };
+		3F78E58920104EAF0025D4EB /* PreferenceWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F78E58820104EAF0025D4EB /* PreferenceWindowController.swift */; };
+		3F78E58C2010832A0025D4EB /* DownloadingViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F78E58A2010832A0025D4EB /* DownloadingViewItem.swift */; };
+		3F78E58D2010832A0025D4EB /* DownloadingViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F78E58B2010832A0025D4EB /* DownloadingViewItem.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -39,12 +49,18 @@
 
 /* Begin PBXFileReference section */
 		19ED0091FB3770F7DCC27371 /* BandcampModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BandcampModel.swift; sourceTree = "<group>"; };
+		19ED01AA559B1F9AAF0159FD /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		19ED01EEE3992DF0216749CC /* PreferenceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferenceViewController.swift; sourceTree = "<group>"; };
+		19ED027F21F5BB19A12640B4 /* DownloadingModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadingModel.swift; sourceTree = "<group>"; };
+		19ED02CDD06F0BF088797BBA /* NSImageResize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSImageResize.swift; sourceTree = "<group>"; };
+		19ED030C9CA8179CA6E6A531 /* DownloadingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadingViewController.swift; sourceTree = "<group>"; };
 		19ED0324E303C5EB0BF3488C /* BCColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BCColor.swift; sourceTree = "<group>"; };
 		19ED040FEF2CBF654A020DBC /* BandcampRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BandcampRequest.swift; sourceTree = "<group>"; };
 		19ED04C1101BC310233BA9CC /* WeeklyModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeeklyModel.swift; sourceTree = "<group>"; };
 		19ED0699F48EA465C2CFC563 /* AboutController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutController.swift; sourceTree = "<group>"; };
 		19ED081D1D57BD3C8A85CAA6 /* AudioPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AudioPlayer.swift; path = BandcampWeekly/Player/AudioPlayer.swift; sourceTree = SOURCE_ROOT; };
 		19ED089E569B094F77941468 /* BCImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BCImage.swift; sourceTree = "<group>"; };
+		19ED0939CEEFD12C6693B8D1 /* DownloadingNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadingNotification.swift; sourceTree = "<group>"; };
 		19ED0C645E4A781955BCF591 /* EventMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventMonitor.swift; sourceTree = "<group>"; };
 		19ED0DB4F4626CC454F7DC96 /* TrackModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackModel.swift; sourceTree = "<group>"; };
 		19ED0E50C7F1B340975D8455 /* PlayerNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlayerNotification.swift; path = BandcampWeekly/Player/PlayerNotification.swift; sourceTree = SOURCE_ROOT; };
@@ -55,6 +71,10 @@
 		3F4BF9E11FF5E57100E8F281 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3F4BF9E31FF5E57100E8F281 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3F4BF9E41FF5E57100E8F281 /* BandcampWeekly.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BandcampWeekly.entitlements; sourceTree = "<group>"; };
+		3F78E58420104C380025D4EB /* Preference.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Preference.storyboard; sourceTree = "<group>"; };
+		3F78E58820104EAF0025D4EB /* PreferenceWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceWindowController.swift; sourceTree = "<group>"; };
+		3F78E58A2010832A0025D4EB /* DownloadingViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadingViewItem.swift; sourceTree = "<group>"; };
+		3F78E58B2010832A0025D4EB /* DownloadingViewItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DownloadingViewItem.xib; sourceTree = "<group>"; };
 		49A5148843CCC13C99A92FB7 /* Pods_BandcampWeekly.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BandcampWeekly.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5581B7649A506DFA68E39114 /* Pods-BandcampWeekly.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BandcampWeekly.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BandcampWeekly/Pods-BandcampWeekly.debug.xcconfig"; sourceTree = "<group>"; };
 		7E396A86424B3795B3E34682 /* Pods-BandcampWeekly.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BandcampWeekly.release.xcconfig"; path = "Pods/Target Support Files/Pods-BandcampWeekly/Pods-BandcampWeekly.release.xcconfig"; sourceTree = "<group>"; };
@@ -81,12 +101,21 @@
 			path = Const;
 			sourceTree = "<group>";
 		};
+		19ED04FFCA4BC0A808430C81 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				19ED02CDD06F0BF088797BBA /* NSImageResize.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		19ED058F07C0D470898CB417 /* Modal */ = {
 			isa = PBXGroup;
 			children = (
 				19ED04C1101BC310233BA9CC /* WeeklyModel.swift */,
 				19ED0091FB3770F7DCC27371 /* BandcampModel.swift */,
 				19ED0DB4F4626CC454F7DC96 /* TrackModel.swift */,
+				19ED027F21F5BB19A12640B4 /* DownloadingModel.swift */,
 			);
 			path = Modal;
 			sourceTree = "<group>";
@@ -121,6 +150,7 @@
 		3F4BF9D91FF5E57100E8F281 /* BandcampWeekly */ = {
 			isa = PBXGroup;
 			children = (
+				3F78E58320104C130025D4EB /* Preference */,
 				3F4BF9DA1FF5E57100E8F281 /* AppDelegate.swift */,
 				3F4BF9DC1FF5E57100E8F281 /* ViewController.swift */,
 				3F4BF9DE1FF5E57100E8F281 /* Assets.xcassets */,
@@ -133,8 +163,24 @@
 				19ED0699F48EA465C2CFC563 /* AboutController.swift */,
 				19ED0A2D42DAA3892C37E40B /* Player */,
 				19ED017CCD18E8EBF2EC848B /* Const */,
+				19ED04FFCA4BC0A808430C81 /* Extension */,
 			);
 			path = BandcampWeekly;
+			sourceTree = "<group>";
+		};
+		3F78E58320104C130025D4EB /* Preference */ = {
+			isa = PBXGroup;
+			children = (
+				3F78E58420104C380025D4EB /* Preference.storyboard */,
+				3F78E58820104EAF0025D4EB /* PreferenceWindowController.swift */,
+				19ED030C9CA8179CA6E6A531 /* DownloadingViewController.swift */,
+				19ED01AA559B1F9AAF0159FD /* SettingViewController.swift */,
+				19ED01EEE3992DF0216749CC /* PreferenceViewController.swift */,
+				3F78E58A2010832A0025D4EB /* DownloadingViewItem.swift */,
+				3F78E58B2010832A0025D4EB /* DownloadingViewItem.xib */,
+				19ED0939CEEFD12C6693B8D1 /* DownloadingNotification.swift */,
+			);
+			path = Preference;
 			sourceTree = "<group>";
 		};
 		A4B49AA32C59A989CAF90B08 /* Pods */ = {
@@ -217,8 +263,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F78E58D2010832A0025D4EB /* DownloadingViewItem.xib in Resources */,
 				3F4BF9DF1FF5E57100E8F281 /* Assets.xcassets in Resources */,
 				3F4BF9E21FF5E57100E8F281 /* Main.storyboard in Resources */,
+				3F78E58520104C380025D4EB /* Preference.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -234,6 +282,8 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-BandcampWeekly/Pods-BandcampWeekly-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/HexColors/HexColors.framework",
+				"${BUILT_PRODUCTS_DIR}/OrderedSet/OrderedSet.framework",
+				"${BUILT_PRODUCTS_DIR}/STRegex/Regex.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftDate/SwiftDate.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftSoup/SwiftSoup.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
@@ -242,6 +292,8 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HexColors.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OrderedSet.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Regex.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftDate.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftSoup.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
@@ -298,11 +350,19 @@
 				19ED04FAFEFDEE5EE82D33DD /* BandcampModel.swift in Sources */,
 				19ED0EF11AB2286CFCBE9530 /* TrackModel.swift in Sources */,
 				19ED0C7023394CCF6F566833 /* EventMonitor.swift in Sources */,
+				3F78E58C2010832A0025D4EB /* DownloadingViewItem.swift in Sources */,
 				19ED06EC04709438957A5CF9 /* AboutController.swift in Sources */,
+				3F78E58920104EAF0025D4EB /* PreferenceWindowController.swift in Sources */,
 				19ED02CB7914D8199BC99789 /* PlayerNotification.swift in Sources */,
 				19ED05A2BD1D953AA06B5228 /* AudioPlayer.swift in Sources */,
 				19ED065BC7DC72D3F5B47770 /* BCImage.swift in Sources */,
 				19ED07F303348CA6D75A76E0 /* BCColor.swift in Sources */,
+				19ED0F82A63EFDA9A9AC323A /* DownloadingViewController.swift in Sources */,
+				19ED0297233523E137472473 /* SettingViewController.swift in Sources */,
+				19ED0C4C345A5F90E260A3C8 /* PreferenceViewController.swift in Sources */,
+				19ED058EDD519F24218BE8BC /* DownloadingModel.swift in Sources */,
+				19ED047F3DC281F5D8E3260E /* DownloadingNotification.swift in Sources */,
+				19ED0653E32AD43A159EF58F /* NSImageResize.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

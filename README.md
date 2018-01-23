@@ -9,13 +9,13 @@ Bandcamp Weekly  is music weekly from http://bandcamp.com/ music website
 
 ## About Project
 
-This project for Bandcamp Weekly App on macOS, Simple interface.
+This project for Bandcamp Weekly App on macos, Simple interface.
 
 ![图片](https://dn-coding-net-production-pp.qbox.me/e1c28292-f32b-418a-9407-019fc431e67b.png)
 
 ## Dev
 
-On project forlder, install dependencies by Cocoapods
+On project forlder, install dependencies by cocoapods
 
 ```
 pod install
@@ -27,6 +27,5 @@ open file `BandcampWeekly.xcworkspace` use Xcode or Appcode
 This project is licensed under the terms of the MIT license.
 
 ## Plan
-- [ ] mp3 download support 
 - [ ] weekly album list
 - [ ] weekly history list

@@ -55,35 +55,41 @@ class AudioPlayer: NSObject {
     }
 
     @objc func create(notification: NSNotification) {
-        player = getPlayer(
-                playerItem: getPlayerItem(
-                        playerAsset: getPlayerAsset(
-                                streamUrl: notification.object as! String
-                        )
-                )
-        )
+        DispatchQueue.main.async {
+            self.player = self.getPlayer(
+                    playerItem: self.getPlayerItem(
+                            playerAsset: self.getPlayerAsset(
+                                    streamUrl: notification.object as! String
+                            )
+                    )
+            )
+        }
     }
 
     func getPlayerAsset(streamUrl: String) -> AVAsset {
         playerAsset = AVAsset(url: URL(string: streamUrl)!)
-        self.notificationCenter.post(
-                name: NSNotification.Name.BCPlayerDuration,
-                object: CMTimeGetSeconds(playerAsset.duration)
-        )
-        playerAsset.loadValuesAsynchronously(forKeys: ["playable"]) {
+        self.playerAsset.loadValuesAsynchronously(forKeys: ["playable"]) {
             var error: NSError? = nil
             let status = self.playerAsset.statusOfValue(forKey: "playable", error: &error)
             switch status {
             case .loaded:
-                self.notificationCenter.post(
-                        name: NSNotification.Name.BCPlayerLoaded,
-                        object: nil
-                )
+                DispatchQueue.main.async {
+                    self.notificationCenter.post(
+                            name: NSNotification.Name.BCPlayerLoaded,
+                            object: nil
+                    )
+                    self.notificationCenter.post(
+                            name: NSNotification.Name.BCPlayerDuration,
+                            object: CMTimeGetSeconds(self.playerAsset.duration)
+                    )
+                }
             case .failed:
-                self.notificationCenter.post(
-                        name: NSNotification.Name.BCPlayerLoaded,
-                        object: nil
-                )
+                DispatchQueue.main.async {
+                    self.notificationCenter.post(
+                            name: NSNotification.Name.BCPlayerLoaded,
+                            object: nil
+                    )
+                }
             default:
                 print("")
             }
@@ -96,22 +102,23 @@ class AudioPlayer: NSObject {
         playerItem.preferredForwardBufferDuration = 60 * 20;
         playerItem.preferredPeakBitRate = 1000 * 1000 * 2;
         playerItem.canUseNetworkResourcesForLiveStreamingWhilePaused = true;
+        DispatchQueue.main.async {
+            // Register as an observer of the player item's status property
+            self.playerItem.addObserver(
+                    self,
+                    forKeyPath: #keyPath(AVPlayerItem.status),
+                    options: [.new],
+                    context: nil
+            )
 
-        // Register as an observer of the player item's status property
-        playerItem.addObserver(
-                self,
-                forKeyPath: #keyPath(AVPlayerItem.status),
-                options: [.new],
-                context: nil
-        )
-
-        // Register as an observer of the player item's status property
-        playerItem.addObserver(
-                self,
-                forKeyPath: #keyPath(AVPlayerItem.loadedTimeRanges),
-                options: [.new],
-                context: nil
-        )
+            // Register as an observer of the player item's status property
+            self.playerItem.addObserver(
+                    self,
+                    forKeyPath: #keyPath(AVPlayerItem.loadedTimeRanges),
+                    options: [.new],
+                    context: nil
+            )
+        }
 
         return playerItem;
     }
@@ -136,15 +143,19 @@ class AudioPlayer: NSObject {
             // Switch over the status
             switch status {
             case .readyToPlay:
-                self.notificationCenter.post(
-                        name: NSNotification.Name.BCPlayerReady,
-                        object: nil
-                )
+                DispatchQueue.main.async {
+                    self.notificationCenter.post(
+                            name: NSNotification.Name.BCPlayerReady,
+                            object: nil
+                    )
+                }
             case .failed:
-                self.notificationCenter.post(
-                        name: NSNotification.Name.BCPlayerFailed,
-                        object: nil
-                )
+                DispatchQueue.main.async {
+                    self.notificationCenter.post(
+                            name: NSNotification.Name.BCPlayerFailed,
+                            object: nil
+                    )
+                }
             default:
                 print("")
             }
@@ -168,26 +179,27 @@ class AudioPlayer: NSObject {
                 seconds: 0.5,
                 preferredTimescale: CMTimeScale(NSEC_PER_SEC)
         )
-        let mainQueue = DispatchQueue.main
-        player.addPeriodicTimeObserver(
-                forInterval: interval,
-                queue: mainQueue
-        ) {
-            [weak self] time in
-            self?.notificationCenter.post(
-                    name: NSNotification.Name.BCPlayerPlaying,
-                    object: CMTimeGetSeconds(time)
-            )
-        }
+        DispatchQueue.main.async {
+            self.player.addPeriodicTimeObserver(
+                    forInterval: interval,
+                    queue: DispatchQueue.main
+            ) {
+                [weak self] time in
+                self?.notificationCenter.post(
+                        name: NSNotification.Name.BCPlayerPlaying,
+                        object: CMTimeGetSeconds(time)
+                )
+            }
 
-        self.player.addBoundaryTimeObserver(
-                forTimes: [NSValue(time: playerItem.duration)],
-                queue: mainQueue
-        ) {
-            self.notificationCenter.post(
-                    name: NSNotification.Name.BCPlayerFinished,
-                    object: nil
-            )
+            self.player.addBoundaryTimeObserver(
+                    forTimes: [NSValue(time: playerItem.duration)],
+                    queue: DispatchQueue.main
+            ) {
+                self.notificationCenter.post(
+                        name: NSNotification.Name.BCPlayerFinished,
+                        object: nil
+                )
+            }
         }
 
 
