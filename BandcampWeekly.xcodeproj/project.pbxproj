@@ -24,6 +24,8 @@
 		19ED0C7023394CCF6F566833 /* EventMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ED0C645E4A781955BCF591 /* EventMonitor.swift */; };
 		19ED0EF11AB2286CFCBE9530 /* TrackModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ED0DB4F4626CC454F7DC96 /* TrackModel.swift */; };
 		19ED0F82A63EFDA9A9AC323A /* DownloadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ED030C9CA8179CA6E6A531 /* DownloadingViewController.swift */; };
+		3F1F885320172EA600B654DE /* TrackItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1F885120172EA600B654DE /* TrackItem.swift */; };
+		3F1F885420172EA600B654DE /* TrackItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F1F885220172EA600B654DE /* TrackItem.xib */; };
 		3F4BF9DB1FF5E57100E8F281 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4BF9DA1FF5E57100E8F281 /* AppDelegate.swift */; };
 		3F4BF9DD1FF5E57100E8F281 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4BF9DC1FF5E57100E8F281 /* ViewController.swift */; };
 		3F4BF9DF1FF5E57100E8F281 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F4BF9DE1FF5E57100E8F281 /* Assets.xcassets */; };
@@ -64,6 +66,8 @@
 		19ED0C645E4A781955BCF591 /* EventMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventMonitor.swift; sourceTree = "<group>"; };
 		19ED0DB4F4626CC454F7DC96 /* TrackModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackModel.swift; sourceTree = "<group>"; };
 		19ED0E50C7F1B340975D8455 /* PlayerNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlayerNotification.swift; path = BandcampWeekly/Player/PlayerNotification.swift; sourceTree = SOURCE_ROOT; };
+		3F1F885120172EA600B654DE /* TrackItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackItem.swift; sourceTree = "<group>"; };
+		3F1F885220172EA600B654DE /* TrackItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrackItem.xib; sourceTree = "<group>"; };
 		3F4BF9D71FF5E57100E8F281 /* BandcampWeekly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BandcampWeekly.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F4BF9DA1FF5E57100E8F281 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3F4BF9DC1FF5E57100E8F281 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -120,6 +124,15 @@
 			path = Modal;
 			sourceTree = "<group>";
 		};
+		19ED09C5B9437F7A8F32D81D /* Tracks */ = {
+			isa = PBXGroup;
+			children = (
+				3F1F885120172EA600B654DE /* TrackItem.swift */,
+				3F1F885220172EA600B654DE /* TrackItem.xib */,
+			);
+			path = Tracks;
+			sourceTree = "<group>";
+		};
 		19ED0A2D42DAA3892C37E40B /* Player */ = {
 			isa = PBXGroup;
 			children = (
@@ -164,6 +177,7 @@
 				19ED0A2D42DAA3892C37E40B /* Player */,
 				19ED017CCD18E8EBF2EC848B /* Const */,
 				19ED04FFCA4BC0A808430C81 /* Extension */,
+				19ED09C5B9437F7A8F32D81D /* Tracks */,
 			);
 			path = BandcampWeekly;
 			sourceTree = "<group>";
@@ -264,6 +278,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3F78E58D2010832A0025D4EB /* DownloadingViewItem.xib in Resources */,
+				3F1F885420172EA600B654DE /* TrackItem.xib in Resources */,
 				3F4BF9DF1FF5E57100E8F281 /* Assets.xcassets in Resources */,
 				3F4BF9E21FF5E57100E8F281 /* Main.storyboard in Resources */,
 				3F78E58520104C380025D4EB /* Preference.storyboard in Resources */,
@@ -343,6 +358,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F1F885320172EA600B654DE /* TrackItem.swift in Sources */,
 				3F4BF9DD1FF5E57100E8F281 /* ViewController.swift in Sources */,
 				3F4BF9DB1FF5E57100E8F281 /* AppDelegate.swift in Sources */,
 				19ED0167DFB94B920F2BA024 /* BandcampRequest.swift in Sources */,

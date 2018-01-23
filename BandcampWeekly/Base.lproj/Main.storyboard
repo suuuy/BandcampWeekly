@@ -688,15 +688,44 @@
             <objects>
                 <viewController identifier="Main" storyboardIdentifier="ViewController" id="XfG-lQ-9wD" userLabel="ViewController" customClass="ViewController" customModule="BandcampWeekly" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" autoresizesSubviews="NO" wantsLayer="YES" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="400" height="73"/>
+                        <rect key="frame" x="0.0" y="0.0" width="400" height="393"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <stackView hidden="YES" distribution="fill" orientation="vertical" alignment="leading" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" translatesAutoresizingMaskIntoConstraints="NO" id="FJf-9c-iRD">
-                                <rect key="frame" x="0.0" y="0.0" width="400" height="73"/>
+                                <rect key="frame" x="0.0" y="0.0" width="400" height="393"/>
                                 <subviews>
                                     <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" translatesAutoresizingMaskIntoConstraints="NO" id="fQH-hm-BHk">
-                                        <rect key="frame" x="0.0" y="0.0" width="400" height="73"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="400" height="393"/>
                                         <subviews>
+                                            <scrollView wantsLayer="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="0.0" horizontalPageScroll="0.0" verticalLineScroll="5" verticalPageScroll="0.0" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jFm-l6-NXs">
+                                                <rect key="frame" x="0.0" y="73" width="400" height="320"/>
+                                                <clipView key="contentView" id="v1e-gk-lxg">
+                                                    <rect key="frame" x="0.0" y="0.0" width="400" height="320"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    <subviews>
+                                                        <collectionView selectable="YES" id="ZGs-Ld-ctk">
+                                                            <rect key="frame" x="0.0" y="0.0" width="400" height="158"/>
+                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
+                                                            <collectionViewFlowLayout key="collectionViewLayout" id="LJ8-Xk-juX">
+                                                                <size key="itemSize" width="360" height="64"/>
+                                                            </collectionViewFlowLayout>
+                                                            <color key="primaryBackgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                            <connections>
+                                                                <outlet property="dataSource" destination="XfG-lQ-9wD" id="edo-Oo-p0k"/>
+                                                            </connections>
+                                                        </collectionView>
+                                                    </subviews>
+                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </clipView>
+                                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" controlSize="mini" horizontal="YES" id="Rzv-Yd-Wsb">
+                                                    <rect key="frame" x="1" y="144" width="233" height="11"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </scroller>
+                                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" controlSize="mini" horizontal="NO" id="WIh-5d-d0X">
+                                                    <rect key="frame" x="234" y="1" width="11" height="143"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </scroller>
+                                            </scrollView>
                                             <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" translatesAutoresizingMaskIntoConstraints="NO" id="4h1-2X-7MU">
                                                 <rect key="frame" x="0.0" y="15" width="400" height="58"/>
                                                 <subviews>
@@ -886,8 +915,10 @@
                                         <visibilityPriorities>
                                             <integer value="1000"/>
                                             <integer value="1000"/>
+                                            <integer value="1000"/>
                                         </visibilityPriorities>
                                         <customSpacing>
+                                            <real value="3.4028234663852886e+38"/>
                                             <real value="3.4028234663852886e+38"/>
                                             <real value="3.4028234663852886e+38"/>
                                         </customSpacing>
@@ -920,6 +951,7 @@
                         <outlet property="playLoading" destination="uFK-n9-04w" id="04T-Vm-xrV"/>
                         <outlet property="sonyNameButton" destination="JTB-Dm-q4O" id="lKA-qP-Lea"/>
                         <outlet property="timeSlider" destination="I8B-kb-t0a" id="lCI-tZ-Bhg"/>
+                        <outlet property="trackCollectionView" destination="ZGs-Ld-ctk" id="jjF-cF-hw3"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

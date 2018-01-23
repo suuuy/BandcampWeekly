@@ -25,6 +25,7 @@ class ViewController: NSViewController {
     @IBOutlet weak var playLoading: NSProgressIndicator!
     @IBOutlet weak var loadingProgress: NSProgressIndicator!
     @IBOutlet weak var menuButton: NSPopUpButton!
+    @IBOutlet weak var trackCollectionView: NSCollectionView!
     var preferenceController: PreferenceWindowController?
     let bandcampRequest: BandcampRequest = BandcampRequest()
     var bandcamp: BandcampModel!
@@ -241,5 +242,30 @@ class ViewController: NSViewController {
         }
     }
 
+}
+
+
+extension ViewController: NSCollectionViewDataSource {
+    func collectionView(_ collectionView: NSCollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.weekly.tracks.count
+    }
+
+    func collectionView(_ collectionView: NSCollectionView, itemForRepresentedObjectAt indexPath: IndexPath) -> NSCollectionViewItem {
+        // 4
+        let item = collectionView.makeItem(
+                withIdentifier: NSUserInterfaceItemIdentifier("TrackItem"),
+                for: indexPath
+        )
+        guard let trackItem = item as? TrackItem else {
+            return item
+        }
+
+        print(" Render Item ", indexPath.section, indexPath.item)
+
+        // 5
+        trackItem.model = self.weekly.tracks[indexPath.item]
+        trackItem.index = indexPath
+        return item
+    }
 }
 
