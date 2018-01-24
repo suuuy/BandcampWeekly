@@ -30,14 +30,14 @@
                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="hWn-yp-ScJ"/>
                     </imageView>
                     <box fixedFrame="YES" boxType="custom" borderType="none" borderWidth="0.0" title="Box" transparent="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WgG-J9-48P">
-                        <rect key="frame" x="50" y="12" width="308" height="44"/>
+                        <rect key="frame" x="52" y="11" width="308" height="44"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <view key="contentView" ambiguous="YES" id="GJb-yp-b6s">
                             <rect key="frame" x="0.0" y="0.0" width="308" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BcK-Ig-3aE">
-                                    <rect key="frame" x="8" y="23" width="290" height="17"/>
+                                    <rect key="frame" x="8" y="25" width="290" height="17"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" truncatesLastVisibleLine="YES" selectable="YES" sendsActionOnEndEditing="YES" baseWritingDirection="leftToRight" title="Label" drawsBackground="YES" usesSingleLineMode="YES" id="eO4-hm-Ihy">
                                         <font key="font" metaFont="systemBold"/>
@@ -46,7 +46,7 @@
                                     </textFieldCell>
                                 </textField>
                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8W5-x9-KZ6">
-                                    <rect key="frame" x="9" y="0.0" width="278" height="17"/>
+                                    <rect key="frame" x="9" y="2" width="278" height="17"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" truncatesLastVisibleLine="YES" sendsActionOnEndEditing="YES" baseWritingDirection="leftToRight" title="Label" drawsBackground="YES" usesSingleLineMode="YES" id="nUx-aO-Y7k">
                                         <font key="font" metaFont="cellTitle"/>
