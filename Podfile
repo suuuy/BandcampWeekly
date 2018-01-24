@@ -1,5 +1,5 @@
 # source 'https://github.com/CocoaPods/Specs.git'
-platform :osx, '10.13'
+platform :osx, '10.10'
 use_frameworks!
 
 target 'BandcampWeekly' do

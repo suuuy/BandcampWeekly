@@ -162,6 +162,15 @@ class ViewController: NSViewController {
                 timeSlider.doubleValue = cur
                 curTrack = weekly.find(time: cur)
                 setAlbumLabel(album: (curTrack)!)
+                let indexPath = IndexPath(item: self.weekly.tracks.index(of: curTrack)!, section: 0)
+                if let item = trackCollectionView.item(at: indexPath) as? TrackItem {
+                    if !item.isSelected {
+                        print("selected item")
+                        trackCollectionView.deselectAll(self)
+                        trackCollectionView.selectItems(at: [indexPath], scrollPosition: .centeredVertically)
+                        item.hover()
+                    }
+                }
             }
         case NSNotification.Name.BCPlayerPlayed:
             playLoading.isHidden = true;
