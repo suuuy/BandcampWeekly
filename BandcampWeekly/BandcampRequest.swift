@@ -24,8 +24,8 @@ class BandcampRequest {
             progress: @escaping (_: Double) -> Void,
             closure: @escaping (_: BandcampModel) -> Void
     ) -> Self {
+        BandcampModel.cleanArchive()
         var model = BandcampModel.unarchived()
-
         if nil != model {
             var date = (model?.show.date.date(format: .rss(alt: true)))! + 1.weeks
             var now = DateInRegion()
@@ -118,13 +118,13 @@ class BandcampRequest {
             }
 
             Alamofire.download(
-                    track.imageUrl200,
+                    track.trackArtImageUrl,
                     to: destination
             ).downloadProgress {
                 progress in
             }.response { response in
                 if response.error == nil, let imagePath = response.destinationURL?.path {
-                    print("downloaded album image ", track.imageUrl200, "on ", imagePath)
+                    print("downloaded album image ", track.trackArtImageUrl, "on ", imagePath)
                     image(imagePath)
                 }
             }

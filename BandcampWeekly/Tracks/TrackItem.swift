@@ -45,7 +45,10 @@ class TrackItem: NSCollectionViewItem {
             return
         }
         DispatchQueue.main.async {
-            self.image.image = NSImage(contentsOf: URL(string: self.model!.trackArtImage)!)
+            ImageCache.image(url: self.model!.trackArtImageUrl) {
+                image in
+                self.image.image = image
+            }
         }
         trackName.title = "\(model!.title) / \(model!.albumTitle)"
         byName.title = "By \(model!.artist)"

@@ -76,6 +76,7 @@ class WeeklyModel: NSObject, NSCoding {
             guard let track = TrackModel(json: data) else {
                 return nil
             }
+            track.image()
             tracks.append(track)
         }
         self.tracks = tracks.sorted {
