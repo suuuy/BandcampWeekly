@@ -26,7 +26,8 @@ class ViewController: NSViewController {
     @IBOutlet weak var loadingProgress: NSProgressIndicator!
     @IBOutlet weak var menuButton: NSPopUpButton!
     @IBOutlet weak var trackCollectionView: NSCollectionView!
-    var preferenceController: PreferenceWindowController?
+    var preferenceWindowController: PreferenceWindowController?
+    var aboutWindowController: AboutWindowController?
     let bandcampRequest: BandcampRequest = BandcampRequest()
     var bandcamp: BandcampModel!
     var weekly: WeeklyModel!
@@ -240,14 +241,23 @@ class ViewController: NSViewController {
         NSApplication.shared.terminate(self)
     }
 
+    @IBAction func showAbout(_ sender: Any) {
+        showWindow(window: aboutWindowController, name: "About", sender)
+    }
+
     @IBAction func showPreference(_ sender: Any) {
-        if preferenceController == nil {
-            let storyboard = NSStoryboard(name: NSStoryboard.Name(rawValue: "Preference"), bundle: nil)
-            preferenceController = storyboard.instantiateInitialController() as? PreferenceWindowController
+        showWindow(window: preferenceWindowController, name: "Preference", sender)
+    }
+
+    func showWindow(window: NSWindowController?, name: String, _ sender: Any) {
+        var controllerWindow = window;
+        if controllerWindow == nil {
+            let storyboard = NSStoryboard(name: NSStoryboard.Name(rawValue: name), bundle: nil)
+            controllerWindow = (storyboard.instantiateInitialController() as? NSWindowController)!
         }
 
-        if preferenceController != nil {
-            preferenceController?.showWindow(sender)
+        if controllerWindow != nil {
+            controllerWindow?.showWindow(sender)
         }
     }
 

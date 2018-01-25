@@ -765,13 +765,13 @@
                                                         </constraints>
                                                     </customView>
                                                     <box boxType="custom" borderType="none" borderWidth="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="hKA-Cq-Ce7">
-                                                        <rect key="frame" x="78" y="0.0" width="322" height="58"/>
+                                                        <rect key="frame" x="78" y="0.0" width="300" height="58"/>
                                                         <view key="contentView" id="Ocj-FX-cfP">
-                                                            <rect key="frame" x="0.0" y="0.0" width="322" height="58"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="300" height="58"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="lZq-IP-3SQ">
-                                                                    <rect key="frame" x="164" y="33" width="137" height="16"/>
+                                                                    <rect key="frame" x="164" y="33" width="115" height="16"/>
                                                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="December 26, 2017" id="m5c-9K-0v2">
                                                                         <font key="font" metaFont="cellTitle"/>
                                                                         <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="0.84999999999999998" colorSpace="calibratedRGB"/>
@@ -833,7 +833,7 @@
                                                                                 </menuItem>
                                                                                 <menuItem title="About" keyEquivalent="p" id="ddY-cq-VwI">
                                                                                     <connections>
-                                                                                        <segue destination="auy-Jh-BRN" kind="show" id="xZH-1L-gd0"/>
+                                                                                        <action selector="showAbout:" target="XfG-lQ-9wD" id="CAy-rl-Hn3"/>
                                                                                     </connections>
                                                                                 </menuItem>
                                                                                 <menuItem title="Preference" keyEquivalent="s" id="K0v-oD-YQN">
@@ -965,75 +965,8 @@
             </objects>
             <point key="canvasLocation" x="75" y="652.5"/>
         </scene>
-        <!--Window Controller-->
-        <scene sceneID="Pgb-1I-Lvf">
-            <objects>
-                <windowController id="auy-Jh-BRN" sceneMemberID="viewController">
-                    <window key="window" title="About" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" oneShot="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" titlebarAppearsTransparent="YES" id="GFV-NF-GZJ">
-                        <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
-                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-                        <rect key="contentRect" x="425" y="461" width="309" height="182"/>
-                        <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
-                        <connections>
-                            <outlet property="delegate" destination="auy-Jh-BRN" id="DUK-MP-vYN"/>
-                        </connections>
-                    </window>
-                    <connections>
-                        <segue destination="Sat-Bf-mXI" kind="relationship" relationship="window.shadowedContentViewController" id="fZE-Oz-VpX"/>
-                    </connections>
-                </windowController>
-                <customObject id="g5e-S5-zFL" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="96" y="914"/>
-        </scene>
-        <!--About Controller-->
-        <scene sceneID="UZl-sg-dTK">
-            <objects>
-                <viewController id="Sat-Bf-mXI" customClass="AboutController" customModule="BandcampWeekly" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="VEm-ba-e8d">
-                        <rect key="frame" x="0.0" y="0.0" width="280" height="150"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <subviews>
-                            <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" fixedFrame="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kte-yl-31O">
-                                <rect key="frame" x="140" y="75" width="0.0" height="0.0"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            </stackView>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eLu-b8-Tz2">
-                                <rect key="frame" x="18" y="45" width="244" height="17"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Bandcamp Weekly" id="lPa-dw-Tca">
-                                    <font key="font" metaFont="systemBold"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x9v-sH-fb5">
-                                <rect key="frame" x="18" y="20" width="244" height="17"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="version 1.0.0" id="1bs-Ny-qHn">
-                                    <font key="font" metaFont="system" size="10"/>
-                                    <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="0.84999999999999998" colorSpace="calibratedRGB"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z8x-Ef-Lws">
-                                <rect key="frame" x="51" y="61" width="179" height="83"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="bandcamp" id="uqs-LC-cli"/>
-                            </imageView>
-                        </subviews>
-                    </view>
-                    <connections>
-                        <outlet property="aboutLabel" destination="1bs-Ny-qHn" id="kA3-E4-zT7"/>
-                    </connections>
-                </viewController>
-                <customObject id="3hK-id-UVS" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="95" y="1358"/>
-        </scene>
     </scenes>
     <resources>
-        <image name="bandcamp" width="175" height="175"/>
         <image name="buttonCell:KZk-3b-plz:image" width="1" height="1">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGVVZYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK8QEgcI
