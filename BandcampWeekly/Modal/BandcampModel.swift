@@ -17,19 +17,23 @@ class BandcampModel: NSObject, NSCoding {
     struct PropertyKey {
         static let weekly = "weekly"
         static let show = "show"
+        static let history = "history"
     }
 
     var weekly = [String: WeeklyModel]()
     var show: WeeklyModel
+    var history = [HistoryModel]()
 
     func encode(with aCoder: NSCoder) {
         aCoder.encode(weekly, forKey: PropertyKey.weekly)
         aCoder.encode(show, forKey: PropertyKey.show)
+        aCoder.encode(history, forKey: PropertyKey.history)
     }
 
     required init?(coder aDecoder: NSCoder) {
         weekly = aDecoder.decodeObject(forKey: PropertyKey.weekly) as! [String: WeeklyModel]
         show = aDecoder.decodeObject(forKey: PropertyKey.show) as! WeeklyModel
+        history = aDecoder.decodeObject(forKey: PropertyKey.history) as! [HistoryModel]
     }
 
     init?(json: JSON) {
@@ -42,6 +46,14 @@ class BandcampModel: NSObject, NSCoding {
         }
 
         self.weekly = m;
+
+        for (key, data) in json["bcw_seq"] {
+            guard let history = HistoryModel(json: data) else {
+                return nil
+            }
+            self.history.append(history)
+        }
+
         self.show = WeeklyModel(json: json["bcw_show"])!
     }
 

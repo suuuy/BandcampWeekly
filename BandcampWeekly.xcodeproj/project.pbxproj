@@ -15,6 +15,7 @@
 		19ED04FAFEFDEE5EE82D33DD /* BandcampModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ED0091FB3770F7DCC27371 /* BandcampModel.swift */; };
 		19ED058EDD519F24218BE8BC /* DownloadingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ED027F21F5BB19A12640B4 /* DownloadingModel.swift */; };
 		19ED05A2BD1D953AA06B5228 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ED081D1D57BD3C8A85CAA6 /* AudioPlayer.swift */; };
+		19ED062CF7D0992A78F2F678 /* HistoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ED02DD061BF8276D4A0E76 /* HistoryModel.swift */; };
 		19ED0653E32AD43A159EF58F /* NSImageResize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ED02CDD06F0BF088797BBA /* NSImageResize.swift */; };
 		19ED065BC7DC72D3F5B47770 /* BCImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ED089E569B094F77941468 /* BCImage.swift */; };
 		19ED06EC04709438957A5CF9 /* AboutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ED0699F48EA465C2CFC563 /* AboutController.swift */; };
@@ -60,6 +61,7 @@
 		19ED01EEE3992DF0216749CC /* PreferenceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferenceViewController.swift; sourceTree = "<group>"; };
 		19ED027F21F5BB19A12640B4 /* DownloadingModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadingModel.swift; sourceTree = "<group>"; };
 		19ED02CDD06F0BF088797BBA /* NSImageResize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSImageResize.swift; sourceTree = "<group>"; };
+		19ED02DD061BF8276D4A0E76 /* HistoryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryModel.swift; sourceTree = "<group>"; };
 		19ED030C9CA8179CA6E6A531 /* DownloadingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadingViewController.swift; sourceTree = "<group>"; };
 		19ED0324E303C5EB0BF3488C /* BCColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BCColor.swift; sourceTree = "<group>"; };
 		19ED040FEF2CBF654A020DBC /* BandcampRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BandcampRequest.swift; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 				19ED0091FB3770F7DCC27371 /* BandcampModel.swift */,
 				19ED0DB4F4626CC454F7DC96 /* TrackModel.swift */,
 				19ED027F21F5BB19A12640B4 /* DownloadingModel.swift */,
+				19ED02DD061BF8276D4A0E76 /* HistoryModel.swift */,
 			);
 			path = Modal;
 			sourceTree = "<group>";
@@ -423,6 +426,7 @@
 				19ED047F3DC281F5D8E3260E /* DownloadingNotification.swift in Sources */,
 				19ED0653E32AD43A159EF58F /* NSImageResize.swift in Sources */,
 				19ED084A396B5A4BCAE184FC /* ImageCache.swift in Sources */,
+				19ED062CF7D0992A78F2F678 /* HistoryModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

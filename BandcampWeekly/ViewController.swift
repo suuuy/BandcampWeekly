@@ -23,15 +23,16 @@ class ViewController: NSViewController {
     @IBOutlet weak var playButton: NSButton!
     @IBOutlet weak var timeSlider: NSSlider!
     @IBOutlet weak var playLoading: NSProgressIndicator!
-    @IBOutlet weak var loadingProgress: NSProgressIndicator!
     @IBOutlet weak var menuButton: NSPopUpButton!
-    @IBOutlet weak var trackCollectionView: NSCollectionView!
+    @IBOutlet weak var historyButton: NSButton!
+    @IBOutlet weak var collectionView: NSCollectionView!
     var preferenceWindowController: PreferenceWindowController?
     var aboutWindowController: AboutWindowController?
     let bandcampRequest: BandcampRequest = BandcampRequest()
     var bandcamp: BandcampModel!
     var weekly: WeeklyModel!
     var curTrack: TrackModel!
+    var isHistory = false
     var notifications = [
         NSNotification.Name.BCPlayerLoaded,
         NSNotification.Name.BCPlayerReady,
@@ -164,11 +165,11 @@ class ViewController: NSViewController {
                 curTrack = weekly.find(time: cur)
                 setAlbumLabel(album: (curTrack)!)
                 let indexPath = IndexPath(item: self.weekly.tracks.index(of: curTrack)!, section: 0)
-                if let item = trackCollectionView.item(at: indexPath) as? TrackItem {
+                if let item = collectionView.item(at: indexPath) as? TrackItem {
                     if !item.isSelected {
                         print("selected item")
-                        trackCollectionView.deselectAll(self)
-                        trackCollectionView.selectItems(at: [indexPath], scrollPosition: .centeredVertically)
+                        collectionView.deselectAll(self)
+                        collectionView.selectItems(at: [indexPath], scrollPosition: .centeredVertically)
                         item.hover()
                     }
                 }
@@ -245,6 +246,28 @@ class ViewController: NSViewController {
         showWindow(window: aboutWindowController, name: "About", sender)
     }
 
+    @IBAction func toggleHistory(_ sender: Any) {
+        isHistory = !isHistory
+        historyButton.image = isHistory ? BCImage.list : BCImage.square
+        collectionView.reloadData()
+        configureCollectionView()
+    }
+
+    private func configureCollectionView() {
+        let flowLayout = NSCollectionViewFlowLayout()
+        let height = isHistory ? 256 : 64
+        let inset = isHistory ?
+                NSEdgeInsets(top: 0.0, left: 10.0, bottom: 0.0, right: 10.0) :
+                NSEdgeInsets(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0)
+
+        flowLayout.itemSize = NSSize(width: 360, height: height)
+        flowLayout.sectionInset = inset
+        flowLayout.minimumInteritemSpacing = 10.0
+        flowLayout.minimumLineSpacing = 10.0
+
+        collectionView.collectionViewLayout = flowLayout
+    }
+
     @IBAction func showPreference(_ sender: Any) {
         showWindow(window: preferenceWindowController, name: "Preference", sender)
     }
@@ -266,11 +289,31 @@ class ViewController: NSViewController {
 
 extension ViewController: NSCollectionViewDataSource {
     func collectionView(_ collectionView: NSCollectionView, numberOfItemsInSection section: Int) -> Int {
+        if self.isHistory {
+            return self.bandcamp.history.count
+        }
         return self.weekly.tracks.count
     }
 
     func collectionView(_ collectionView: NSCollectionView, itemForRepresentedObjectAt indexPath: IndexPath) -> NSCollectionViewItem {
         // 4
+
+        if self.isHistory {
+
+            let item = collectionView.makeItem(
+                    withIdentifier: NSUserInterfaceItemIdentifier("HistoryWeekly"),
+                    for: indexPath
+            )
+            guard let historyItem = item as? HistoryWeekly else {
+                return item
+            }
+
+            // 5
+            historyItem.model = self.bandcamp.history[indexPath.item]
+            historyItem.index = indexPath
+            return item
+
+        }
         let item = collectionView.makeItem(
                 withIdentifier: NSUserInterfaceItemIdentifier("TrackItem"),
                 for: indexPath
