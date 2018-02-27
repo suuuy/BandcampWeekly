@@ -11,7 +11,6 @@ import SwiftyJSON
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-    let notificationCenter = NotificationCenter.default
     let indicatorHolder: NSView = NSView()
     let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
     var indicator: NSProgressIndicator?
@@ -34,13 +33,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             )
         }
 
-        bcRequest.getData(
+        bcRequest.getWeekly(
+                number: "",
                 progress: { progress in
                     if (progress >= 1) {
                         self.indicator?.isHidden = true
                     }
                 },
-                closure: { bandcamp in
+                closure: { weekly in
                     if let button = self.statusItem.button {
                         button.subviews.removeAll(keepingCapacity: true)
                         button.image = BCImage.bar
@@ -48,13 +48,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                     }
 
                     let controller = ViewController.freshController()
-                    controller.bandcamp = bandcamp
                     self.popover.contentViewController = controller;
                     self.eventMonitor = EventMonitor(mask: [.leftMouseDown, .rightMouseDown]) { [weak self] event in
                         if let strongSelf = self, strongSelf.popover.isShown {
                             strongSelf.closePopover(sender: event)
                         }
                     }
+                    NotificationCenter.default.post(
+                            name: NSNotification.Name.BCWeeklyLoaded,
+                            object: weekly
+                    )
                 }
         );
     }

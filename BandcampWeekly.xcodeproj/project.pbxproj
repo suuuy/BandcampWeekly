@@ -10,7 +10,6 @@
 		0BAFC765AFAF1A8CBFCCA304 /* Pods_BandcampWeekly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49A5148843CCC13C99A92FB7 /* Pods_BandcampWeekly.framework */; };
 		19ED0167DFB94B920F2BA024 /* BandcampRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ED040FEF2CBF654A020DBC /* BandcampRequest.swift */; };
 		19ED0297233523E137472473 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ED01AA559B1F9AAF0159FD /* SettingViewController.swift */; };
-		19ED02CB7914D8199BC99789 /* PlayerNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ED0E50C7F1B340975D8455 /* PlayerNotification.swift */; };
 		19ED047F3DC281F5D8E3260E /* DownloadingNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ED0939CEEFD12C6693B8D1 /* DownloadingNotification.swift */; };
 		19ED04FAFEFDEE5EE82D33DD /* BandcampModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ED0091FB3770F7DCC27371 /* BandcampModel.swift */; };
 		19ED058EDD519F24218BE8BC /* DownloadingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ED027F21F5BB19A12640B4 /* DownloadingModel.swift */; };
@@ -21,11 +20,13 @@
 		19ED06EC04709438957A5CF9 /* AboutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ED0699F48EA465C2CFC563 /* AboutController.swift */; };
 		19ED074DC385D7A5CB8FF5A7 /* WeeklyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ED04C1101BC310233BA9CC /* WeeklyModel.swift */; };
 		19ED07F303348CA6D75A76E0 /* BCColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ED0324E303C5EB0BF3488C /* BCColor.swift */; };
-		19ED084A396B5A4BCAE184FC /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ED0999008CDDA43FDB139F /* ImageCache.swift */; };
+		19ED08743D6BF671327E5C3C /* DataNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ED03410A627888B6FFEEA6 /* DataNotification.swift */; };
 		19ED0C4C345A5F90E260A3C8 /* PreferenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ED01EEE3992DF0216749CC /* PreferenceViewController.swift */; };
 		19ED0C7023394CCF6F566833 /* EventMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ED0C645E4A781955BCF591 /* EventMonitor.swift */; };
+		19ED0E41C9BE19CEC920B917 /* BandcampCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ED0C0CF0EEC874D392B76A /* BandcampCache.swift */; };
 		19ED0EF11AB2286CFCBE9530 /* TrackModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ED0DB4F4626CC454F7DC96 /* TrackModel.swift */; };
 		19ED0F82A63EFDA9A9AC323A /* DownloadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ED030C9CA8179CA6E6A531 /* DownloadingViewController.swift */; };
+		19ED0FD29AB02A8403BCBBE3 /* PlayerNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ED0363A020011A73EA1AF3 /* PlayerNotification.swift */; };
 		3F1F885320172EA600B654DE /* TrackItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1F885120172EA600B654DE /* TrackItem.swift */; };
 		3F1F885420172EA600B654DE /* TrackItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F1F885220172EA600B654DE /* TrackItem.xib */; };
 		3F4BF9DB1FF5E57100E8F281 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4BF9DA1FF5E57100E8F281 /* AppDelegate.swift */; };
@@ -64,16 +65,17 @@
 		19ED02DD061BF8276D4A0E76 /* HistoryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryModel.swift; sourceTree = "<group>"; };
 		19ED030C9CA8179CA6E6A531 /* DownloadingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadingViewController.swift; sourceTree = "<group>"; };
 		19ED0324E303C5EB0BF3488C /* BCColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BCColor.swift; sourceTree = "<group>"; };
+		19ED03410A627888B6FFEEA6 /* DataNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataNotification.swift; sourceTree = "<group>"; };
+		19ED0363A020011A73EA1AF3 /* PlayerNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerNotification.swift; sourceTree = "<group>"; };
 		19ED040FEF2CBF654A020DBC /* BandcampRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BandcampRequest.swift; sourceTree = "<group>"; };
 		19ED04C1101BC310233BA9CC /* WeeklyModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeeklyModel.swift; sourceTree = "<group>"; };
 		19ED0699F48EA465C2CFC563 /* AboutController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutController.swift; sourceTree = "<group>"; };
 		19ED081D1D57BD3C8A85CAA6 /* AudioPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AudioPlayer.swift; path = BandcampWeekly/Player/AudioPlayer.swift; sourceTree = SOURCE_ROOT; };
 		19ED089E569B094F77941468 /* BCImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BCImage.swift; sourceTree = "<group>"; };
 		19ED0939CEEFD12C6693B8D1 /* DownloadingNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadingNotification.swift; sourceTree = "<group>"; };
-		19ED0999008CDDA43FDB139F /* ImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
+		19ED0C0CF0EEC874D392B76A /* BandcampCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BandcampCache.swift; sourceTree = "<group>"; };
 		19ED0C645E4A781955BCF591 /* EventMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventMonitor.swift; sourceTree = "<group>"; };
 		19ED0DB4F4626CC454F7DC96 /* TrackModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackModel.swift; sourceTree = "<group>"; };
-		19ED0E50C7F1B340975D8455 /* PlayerNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlayerNotification.swift; path = BandcampWeekly/Player/PlayerNotification.swift; sourceTree = SOURCE_ROOT; };
 		3F1F885120172EA600B654DE /* TrackItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackItem.swift; sourceTree = "<group>"; };
 		3F1F885220172EA600B654DE /* TrackItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrackItem.xib; sourceTree = "<group>"; };
 		3F4BF9D71FF5E57100E8F281 /* BandcampWeekly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BandcampWeekly.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -117,12 +119,13 @@
 			path = Const;
 			sourceTree = "<group>";
 		};
-		19ED0234135EBECE2CF49501 /* Cache */ = {
+		19ED0199018679BE4FE56B3C /* Notification */ = {
 			isa = PBXGroup;
 			children = (
-				19ED0999008CDDA43FDB139F /* ImageCache.swift */,
+				19ED0363A020011A73EA1AF3 /* PlayerNotification.swift */,
+				19ED03410A627888B6FFEEA6 /* DataNotification.swift */,
 			);
-			path = Cache;
+			path = Notification;
 			sourceTree = "<group>";
 		};
 		19ED04FFCA4BC0A808430C81 /* Extension */ = {
@@ -141,6 +144,7 @@
 				19ED0DB4F4626CC454F7DC96 /* TrackModel.swift */,
 				19ED027F21F5BB19A12640B4 /* DownloadingModel.swift */,
 				19ED02DD061BF8276D4A0E76 /* HistoryModel.swift */,
+				19ED0C0CF0EEC874D392B76A /* BandcampCache.swift */,
 			);
 			path = Modal;
 			sourceTree = "<group>";
@@ -157,7 +161,6 @@
 		19ED0A2D42DAA3892C37E40B /* Player */ = {
 			isa = PBXGroup;
 			children = (
-				19ED0E50C7F1B340975D8455 /* PlayerNotification.swift */,
 				19ED081D1D57BD3C8A85CAA6 /* AudioPlayer.swift */,
 			);
 			path = Player;
@@ -200,7 +203,7 @@
 				19ED017CCD18E8EBF2EC848B /* Const */,
 				19ED04FFCA4BC0A808430C81 /* Extension */,
 				19ED09C5B9437F7A8F32D81D /* Tracks */,
-				19ED0234135EBECE2CF49501 /* Cache */,
+				19ED0199018679BE4FE56B3C /* Notification */,
 			);
 			path = BandcampWeekly;
 			sourceTree = "<group>";
@@ -340,7 +343,9 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-BandcampWeekly/Pods-BandcampWeekly-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
 				"${BUILT_PRODUCTS_DIR}/HexColors/HexColors.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/OrderedSet/OrderedSet.framework",
 				"${BUILT_PRODUCTS_DIR}/STRegex/Regex.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftDate/SwiftDate.framework",
@@ -350,7 +355,9 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HexColors.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OrderedSet.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Regex.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftDate.framework",
@@ -414,7 +421,6 @@
 				3F78E58C2010832A0025D4EB /* DownloadingViewItem.swift in Sources */,
 				19ED06EC04709438957A5CF9 /* AboutController.swift in Sources */,
 				3F78E58920104EAF0025D4EB /* PreferenceWindowController.swift in Sources */,
-				19ED02CB7914D8199BC99789 /* PlayerNotification.swift in Sources */,
 				19ED05A2BD1D953AA06B5228 /* AudioPlayer.swift in Sources */,
 				19ED065BC7DC72D3F5B47770 /* BCImage.swift in Sources */,
 				19ED07F303348CA6D75A76E0 /* BCColor.swift in Sources */,
@@ -425,8 +431,10 @@
 				3F84A2222019DC0200A6C2B8 /* HistoryWeekly.swift in Sources */,
 				19ED047F3DC281F5D8E3260E /* DownloadingNotification.swift in Sources */,
 				19ED0653E32AD43A159EF58F /* NSImageResize.swift in Sources */,
-				19ED084A396B5A4BCAE184FC /* ImageCache.swift in Sources */,
 				19ED062CF7D0992A78F2F678 /* HistoryModel.swift in Sources */,
+				19ED0FD29AB02A8403BCBBE3 /* PlayerNotification.swift in Sources */,
+				19ED08743D6BF671327E5C3C /* DataNotification.swift in Sources */,
+				19ED0E41C9BE19CEC920B917 /* BandcampCache.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

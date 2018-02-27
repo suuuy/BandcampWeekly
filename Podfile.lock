@@ -1,6 +1,9 @@
 PODS:
   - Alamofire (4.6.0)
+  - AlamofireImage (3.3.0):
+    - Alamofire (~> 4.5)
   - HexColors (6.0.0)
+  - Kingfisher (4.6.1)
   - OrderedSet (2.0.6)
   - STRegex (1.1.0)
   - SwiftDate (4.5.1)
@@ -9,7 +12,9 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire
+  - AlamofireImage
   - HexColors
+  - Kingfisher
   - OrderedSet
   - STRegex
   - SwiftDate
@@ -18,13 +23,15 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
+  AlamofireImage: 2e784dc5d00f04903a52c1d169181469c805c3df
   HexColors: f8c66339541a74bb08905bfe7cd4f8cc85e9e173
+  Kingfisher: 1f9157d9c02b380cbd0b7cc890161195164eb634
   OrderedSet: d325b3f06a4eda704344b5030b5fc04de9e6b41c
   STRegex: eb1f4c2fe9e2f0265b8df8634774cd8cd8914018
   SwiftDate: 7b56d42a221f582047287deb256b23fc5ed49a60
   SwiftSoup: db0634b1571304cfef38eb0ee6505eb7d06765f1
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
 
-PODFILE CHECKSUM: d5aac4ef689a643614f606a874513495db630b1d
+PODFILE CHECKSUM: 36791af1dd2dd313dc504921543493359cc6f209
 
 COCOAPODS: 1.3.1

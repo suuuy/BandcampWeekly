@@ -49,6 +49,10 @@
                             <font key="font" metaFont="smallSystem"/>
                         </buttonCell>
                     </button>
+                    <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" maxValue="100" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="oYm-F9-47T">
+                        <rect key="frame" x="172" y="158" width="16" height="16"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    </progressIndicator>
                 </subviews>
             </view>
             <color key="fillColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -56,6 +60,7 @@
         <collectionViewItem nibName="HistoryWeekly" id="X8L-nc-rUJ" customClass="HistoryWeekly" customModule="BandcampWeekly" customModuleProvider="target">
             <connections>
                 <outlet property="image" destination="Ima-9X-HoP" id="Wa6-b4-6YP"/>
+                <outlet property="indicator" destination="oYm-F9-47T" id="LBL-Bw-yzc"/>
                 <outlet property="label" destination="JPv-iv-fyg" id="97p-I0-7ac"/>
                 <outlet property="numButton" destination="ZM0-1G-PXC" id="Lgn-Rq-ckR"/>
                 <outlet property="view" destination="6hX-6f-xk6" id="cKB-FR-dZa"/>

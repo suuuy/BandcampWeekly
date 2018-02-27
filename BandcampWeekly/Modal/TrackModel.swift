@@ -22,10 +22,8 @@ class TrackModel: NSObject, NSCoding {
         static let bioImageId = "bioImageId"
         static let url = "url"
         static let artist = "artist"
-        static let artistImage = "artistImage"
         static let artistImageUrl = "artistImageUrl"
         static let trackArtImageUrl = "trackArtImageUrl"
-        static let trackArtImage = "trackArtImage"
     }
 
     let trackId: String
@@ -42,9 +40,7 @@ class TrackModel: NSObject, NSCoding {
     let url: String
     let artist: String
     let artistImageUrl: String
-    var artistImage: NSImage?
     let trackArtImageUrl: String
-    var trackArtImage: NSImage?
 
     func encode(with aCoder: NSCoder) {
         aCoder.encode(trackId, forKey: PropertyKey.trackId)
@@ -61,10 +57,7 @@ class TrackModel: NSObject, NSCoding {
         aCoder.encode(url, forKey: PropertyKey.url)
         aCoder.encode(artist, forKey: PropertyKey.artist)
         aCoder.encode(artistImageUrl, forKey: PropertyKey.artistImageUrl)
-        aCoder.encode(artistImage, forKey: PropertyKey.artistImage)
         aCoder.encode(trackArtImageUrl, forKey: PropertyKey.trackArtImageUrl)
-        aCoder.encode(trackArtImage, forKey: PropertyKey.trackArtImage)
-
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -81,9 +74,7 @@ class TrackModel: NSObject, NSCoding {
         bioImageId = aDecoder.decodeObject(forKey: PropertyKey.bioImageId) as! String
         url = aDecoder.decodeObject(forKey: PropertyKey.url) as! String
         artist = aDecoder.decodeObject(forKey: PropertyKey.artist) as! String
-        artistImage = aDecoder.decodeObject(forKey: PropertyKey.artistImage) as! NSImage
         artistImageUrl = aDecoder.decodeObject(forKey: PropertyKey.artistImageUrl) as! String
-        trackArtImage = aDecoder.decodeObject(forKey: PropertyKey.trackArtImage) as! NSImage
         trackArtImageUrl = aDecoder.decodeObject(forKey: PropertyKey.trackArtImageUrl) as! String
     }
 
@@ -104,17 +95,5 @@ class TrackModel: NSObject, NSCoding {
         self.trackArtImageUrl = "https://f4.bcbits.com/img/a0" + self.trackArtId + "_13"
         self.url = json["url"].stringValue
         self.artist = json["artist"].stringValue
-    }
-
-    func image() {
-        ImageCache.image(url: self.trackArtImageUrl) {
-            image in
-            self.trackArtImage = image
-        }
-        ImageCache.image(url: self.artistImageUrl) {
-            image in
-            self.artistImage = image
-        }
-
     }
 }

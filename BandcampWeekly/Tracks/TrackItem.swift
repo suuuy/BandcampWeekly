@@ -9,13 +9,22 @@
 import Cocoa
 import Foundation
 import AppKit
+import Kingfisher
 
 class TrackItem: NSCollectionViewItem {
 
     @IBOutlet weak var image: NSImageView!
     @IBOutlet weak var trackName: NSTextFieldCell!
     @IBOutlet weak var byName: NSTextFieldCell!
-    var model: TrackModel?
+    var model: TrackModel? {
+        didSet {
+            if let model = model {
+                image.kf.setImage(with: URL(string: model.trackArtImageUrl))
+                trackName.title = "\(model.title) / \(model.albumTitle)"
+                byName.title = "By \(model.artist)"
+            }
+        }
+    }
     var index: IndexPath?
 
     override func viewDidLoad() {
@@ -32,26 +41,6 @@ class TrackItem: NSCollectionViewItem {
         self.view.layer?.addSublayer(border)
         trackName.backgroundColor = NSColor.clear
         byName.backgroundColor = NSColor.clear
-        render()
-    }
-
-    override func viewWillAppear() {
-        super.viewWillAppear()
-        render()
-    }
-
-    func render() {
-        if nil == model {
-            return
-        }
-        DispatchQueue.main.async {
-            ImageCache.image(url: self.model!.trackArtImageUrl) {
-                image in
-                self.image.image = image
-            }
-        }
-        trackName.title = "\(model!.title) / \(model!.albumTitle)"
-        byName.title = "By \(model!.artist)"
     }
 
     func hover() {

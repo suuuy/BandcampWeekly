@@ -1,6 +1,0 @@
-framework module Pods_BandcampWeekly {
-  umbrella header "Pods-BandcampWeekly-umbrella.h"
-
-  export *
-  module * { export * }
-}

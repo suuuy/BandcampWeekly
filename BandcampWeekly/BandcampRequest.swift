@@ -20,63 +20,54 @@ class BandcampRequest {
     let musicDirectory = FileManager.default.urls(for: .musicDirectory, in: .userDomainMask).first
     var request: Request?
 
-    func getData(
+    func getWeekly(
+            number: String,
             progress: @escaping (_: Double) -> Void,
-            closure: @escaping (_: BandcampModel) -> Void
+            closure: @escaping (_ weekly: BandcampModel) -> Void
     ) -> Self {
-        BandcampModel.cleanArchive()
-        var model = BandcampModel.unarchived()
-        if nil != model {
-            var date = (model?.show.date.date(format: .rss(alt: true)))! + 1.weeks
-            var now = DateInRegion()
-            if (now.startOfDay >= date.startOfDay) {
-                print("Clean Data from local")
-                BandcampModel.cleanArchive()
-            }
-        }
+        BandcampCache.unarchive(number) {
+            weekly in
+            if nil != weekly {
+                closure(weekly!)
+                progress(1)
+            } else {
+                let queue = DispatchQueue(
+                        label: "io.muo.bandcamp.response-queue",
+                        qos: .utility,
+                        attributes: [.concurrent]
+                )
 
-        model = BandcampModel.unarchived()
-
-        if nil != model {
-            print("Read Data from local")
-            closure(model!)
-            progress(1)
-            return self
-        }
-
-        let queue = DispatchQueue(
-                label: "io.muo.bandcamp.response-queue",
-                qos: .utility,
-                attributes: [.concurrent]
-        )
-
-        print("Request Data from network")
-
-        request = Alamofire.request(
-                "https://bandcamp.com",
-                encoding: URLEncoding.queryString
-        ).downloadProgress {
-            progressVal in
-            progress(progressVal.fractionCompleted / 2)
-        }.responseData { response in
-            if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
-                DispatchQueue.main.async {
-                    let doc: Document = try! SwiftSoup.parse(utf8Text)
-                    progress(0.6)
-                    let link: Element = try! doc.select("#pagedata").first()!
-                    progress(0.7)
-                    let blob: String = try! link.attr("data-blob");
-                    progress(0.8)
-                    let model = BandcampModel(json: JSON.parse(blob))!
-                    print("Request Complete...", model)
-                    closure(model)
-                    progress(1)
-                    DispatchQueue.main.async {
-                        model.archive()
+                print("Request Data from network")
+                let url = "https://bandcamp.com/?show=\(number)"
+                print(url)
+                self.request = Alamofire.request(
+                        url,
+                        encoding: URLEncoding.queryString
+                ).downloadProgress {
+                    progressVal in
+                    progress(progressVal.fractionCompleted / 2)
+                }.responseData { response in
+                    if let data = response.data,
+                       let utf8Text = String(data: data, encoding: .utf8),
+                       nil != utf8Text {
+                        DispatchQueue.main.async {
+                            let doc: Document = try! SwiftSoup.parse(utf8Text)
+                            progress(0.6)
+                            let link: Element = try! doc.select("#pagedata").first()!
+                            progress(0.7)
+                            let blob: String = try! link.attr("data-blob");
+                            progress(0.8)
+                            let model = BandcampModel(json: JSON.parse(blob))!
+                            print("Request Complete...", model)
+                            closure(model)
+                            BandcampCache.archive(number, weekly: model)
+                            progress(1)
+                        }
                     }
                 }
             }
         }
+
         return self
     }
 
@@ -142,7 +133,7 @@ class BandcampRequest {
                                 if let matches = self.getStreamRegular().allMatches(in: utf8Text).first {
                                     let downloadUrl: String = matches.captures.last as! String
 
-                                    //download mp3 file
+                                    //download mp3 file
 
                                     let destination: DownloadRequest.DownloadFileDestination = { _, _ in
                                         return (

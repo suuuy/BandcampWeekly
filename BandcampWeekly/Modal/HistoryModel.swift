@@ -60,7 +60,6 @@ class HistoryModel: NSObject, NSCoding {
         aCoder.encode(date, forKey: PropertyKey.date)
         aCoder.encode(screenImageId, forKey: PropertyKey.screenImageId)
         aCoder.encode(imageUrl, forKey: PropertyKey.imageUrl)
-
     }
 
     required init?(coder aDecoder: NSCoder) {
