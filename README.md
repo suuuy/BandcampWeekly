@@ -11,7 +11,7 @@ Bandcamp Weekly  is music weekly from http://bandcamp.com/ music website
 
 This project for Bandcamp Weekly App on macos, Simple interface.
 
-![图片](https://dn-coding-net-production-pp.qbox.me/e1c28292-f32b-418a-9407-019fc431e67b.png)
+![图片](https://dn-coding-net-production-pp.qbox.me/2ad04351-d2e0-4a16-bafd-a52ab4d50548.png)
 
 ## Dev
 
