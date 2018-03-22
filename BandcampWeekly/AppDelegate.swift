@@ -40,7 +40,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                         self.indicator?.isHidden = true
                     }
                 },
-                closure: { weekly in
+                closure: { weekly, history in
                     if let button = self.statusItem.button {
                         button.subviews.removeAll(keepingCapacity: true)
                         button.image = BCImage.bar
@@ -56,7 +56,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                     }
                     NotificationCenter.default.post(
                             name: NSNotification.Name.BCWeeklyLoaded,
-                            object: weekly
+                            object: ["weekly": weekly, "history": history]
                     )
                 }
         );

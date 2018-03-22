@@ -19,55 +19,56 @@ class BandcampRequest {
     let storage = UserDefaults.standard
     let musicDirectory = FileManager.default.urls(for: .musicDirectory, in: .userDomainMask).first
     var request: Request?
+    var weeklyCache = BandcampCache(region: .weekly)
+    var historyCache = BandcampCache(region: .history)
 
     func getWeekly(
             number: String,
             progress: @escaping (_: Double) -> Void,
-            closure: @escaping (_ weekly: BandcampModel) -> Void
+            closure: @escaping (_ weekly: WeeklyModel, _ history: [HistoryModel]) -> Void
     ) -> Self {
-        BandcampCache.unarchive(number) {
-            weekly in
-            if nil != weekly {
-                closure(weekly!)
-                progress(1)
-            } else {
-                let queue = DispatchQueue(
-                        label: "io.muo.bandcamp.response-queue",
-                        qos: .utility,
-                        attributes: [.concurrent]
-                )
+        let weekly = weeklyCache.unarchive(number) as? WeeklyModel
+        let history = historyCache.unarchive("history") as? [HistoryModel]
+        if nil != weekly && nil != history {
+            closure(weekly!, history!)
+            progress(1)
+        } else {
+            let queue = DispatchQueue(
+                    label: "io.muo.bandcamp.response-queue",
+                    qos: .utility,
+                    attributes: [.concurrent]
+            )
 
-                print("Request Data from network")
-                let url = "https://bandcamp.com/?show=\(number)"
-                print(url)
-                self.request = Alamofire.request(
-                        url,
-                        encoding: URLEncoding.queryString
-                ).downloadProgress {
-                    progressVal in
-                    progress(progressVal.fractionCompleted / 2)
-                }.responseData { response in
-                    if let data = response.data,
-                       let utf8Text = String(data: data, encoding: .utf8),
-                       nil != utf8Text {
-                        DispatchQueue.main.async {
-                            let doc: Document = try! SwiftSoup.parse(utf8Text)
-                            progress(0.6)
-                            let link: Element = try! doc.select("#pagedata").first()!
-                            progress(0.7)
-                            let blob: String = try! link.attr("data-blob");
-                            progress(0.8)
-                            let model = BandcampModel(json: JSON.parse(blob))!
-                            print("Request Complete...", model)
-                            closure(model)
-                            BandcampCache.archive(number, weekly: model)
-                            progress(1)
-                        }
+            print("Request Data from network")
+            let url = "https://bandcamp.com/?show=\(number)"
+            print(url)
+            self.request = Alamofire.request(
+                    url,
+                    encoding: URLEncoding.queryString
+            ).downloadProgress {
+                progressVal in
+                progress(progressVal.fractionCompleted / 2)
+            }.responseData { response in
+                if let data = response.data,
+                   let utf8Text = String(data: data, encoding: .utf8),
+                   nil != utf8Text {
+                    DispatchQueue.main.async {
+                        let doc: Document = try! SwiftSoup.parse(utf8Text)
+                        progress(0.6)
+                        let link: Element = try! doc.select("#pagedata").first()!
+                        progress(0.7)
+                        let blob: String = try! link.attr("data-blob");
+                        progress(0.8)
+                        let model = BandcampModel(json: JSON.parse(blob))!
+                        print("Request Complete...", model)
+                        closure(model.weekly, model.history)
+                        self.weeklyCache.archive(number, obj: model.weekly)
+                        self.historyCache.archive("history", obj: model.history)
+                        progress(1)
                     }
                 }
             }
         }
-
         return self
     }
 
@@ -177,4 +178,5 @@ class BandcampRequest {
     private func getStreamRegular() -> Regex {
         return try! Regex(string: BandcampRequest.STREAM_REGULAR)
     }
+
 }

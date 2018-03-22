@@ -6,15 +6,35 @@
 import Foundation
 
 class BandcampCache {
-    static var DocumentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
-    static var BandcampWeekly = "BandcampWeekly";
+    static var CacheDirectory =
+            FileManager().urls(
+                    for: .cachesDirectory,
+                    in: .userDomainMask
+            ).first!
+    var region: Region;
 
-    static func getKey(_ region: String, _ number: String) -> URL {
-        return DocumentsDirectory.appendingPathComponent("\(region)-\(number)")
+    init(region: Region) {
+        self.region = region
     }
 
-    static func cleanArchive(_ region: String, _ number: String) {
-        let key = getKey(region, number)
+    func getKey(_ key: String) -> URL {
+        let dir = BandcampCache.CacheDirectory
+                .appendingPathComponent("BandcampWeekly", isDirectory: true)
+                .appendingPathComponent("\(self.region)", isDirectory: true)
+
+        if !FileManager.default.fileExists(atPath: dir.path) {
+            do {
+                try FileManager.default.createDirectory(at: dir, withIntermediateDirectories: true)
+            } catch {
+                print("Create cache directory failed ")
+            };
+        }
+
+        return dir.appendingPathComponent("\(key)")
+    }
+
+    func clean(_ key: String) {
+        let key = getKey(key)
         if FileManager.default.fileExists(atPath: key.path) {
             do {
                 try FileManager.default.removeItem(at: key)
@@ -24,30 +44,26 @@ class BandcampCache {
         }
     }
 
-    static func archive(_ number: String, weekly: BandcampModel) {
-        clean(number)
-        NSKeyedArchiver.archiveRootObject(weekly, toFile: getKey(BandcampWeekly, number).path)
+    func archive(_ key: String, obj: Any) {
+        clean(key)
+        NSKeyedArchiver.archiveRootObject(obj, toFile: getKey(key).path)
     }
 
-    static func unarchive(
-            _ number: String,
-            _ closure: @escaping (_ weekly: BandcampModel?) -> Void
-    ) {
+    func unarchive(
+            _ key: String
+    ) -> Any? {
         do {
-            if let weekly = NSKeyedUnarchiver.unarchiveObject(withFile: getKey(BandcampWeekly, number).path) as? BandcampModel {
-                closure(weekly)
-                return;
+            if let obj = NSKeyedUnarchiver.unarchiveObject(withFile: getKey(key).path) {
+                return obj;
             }
-            closure(nil)
         } catch {
             print("unarchive error")
-            BandcampCache.clean(number)
+            clean(key)
         }
+        return nil;
     }
 
-
-    static func clean(_ number: String) {
-        cleanArchive(BandcampWeekly, number)
+    enum Region {
+        case weekly, history
     }
-
 }
