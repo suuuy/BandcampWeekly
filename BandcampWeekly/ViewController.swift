@@ -30,7 +30,8 @@ class ViewController: NSViewController {
     @IBOutlet weak var collectionView: NSCollectionView!
     var preferenceWindowController: PreferenceWindowController?
     var aboutWindowController: AboutWindowController?
-    var bandcamp: BandcampModel!
+    var weekly: WeeklyModel?
+    var history: [HistoryModel]?
     var curTrack: TrackModel!
     var isHistory = false
     var notifications = [
@@ -66,7 +67,7 @@ class ViewController: NSViewController {
     }
 
     func initData() {
-        curTrack = (bandcamp.weekly.tracks.first)!
+        curTrack = (weekly?.tracks.first)!
         setDateLabel()
         setAlbumLabel(
                 album: curTrack
@@ -74,10 +75,10 @@ class ViewController: NSViewController {
         setButton();
         mainView.isHidden = false
         DispatchQueue.main.async {
-            print("parse weekly audio steam", self.bandcamp.weekly.audioStream)
+            print("parse weekly audio steam", self.weekly?.audioStream)
             self.notificationCenter.post(
                     name: NSNotification.Name.BCPlayerInit,
-                    object: (self.bandcamp.weekly.audioStream["mp3-128"])!
+                    object: (self.weekly?.audioStream["mp3-128"])!
             )
         }
     }
@@ -123,8 +124,8 @@ class ViewController: NSViewController {
     }
 
     func setDateLabel() {
-        bandcampLabel.textColor = NSColor(bandcamp.weekly.buttonColor)
-        dateLabel.title = (try bandcamp.weekly.publishedDate.date(
+        bandcampLabel.textColor = NSColor((weekly?.buttonColor)!)
+        dateLabel.title = (try weekly?.publishedDate.date(
                 format: .rss(alt: true)
         )?.string(custom: "yyyy-MM-dd"))!
     }
@@ -132,11 +133,10 @@ class ViewController: NSViewController {
     func setButton() {
         playButton.isBordered = false //Important
         playButton.wantsLayer = true
-        playButton.layer?.backgroundColor = NSColor(bandcamp.weekly.buttonColor)?.cgColor
+        playButton.layer?.backgroundColor = NSColor((weekly?.buttonColor)!)?.cgColor
 
         playLoading.wantsLayer = true
-        playLoading.layer?.backgroundColor = NSColor(bandcamp.weekly.buttonColor)?.cgColor
-        print(bandcamp.weekly.buttonColor)
+        playLoading.layer?.backgroundColor = NSColor((weekly?.buttonColor)!)?.cgColor
     }
 
     @objc func observerNotification(notification: NSNotification) {
@@ -160,19 +160,10 @@ class ViewController: NSViewController {
             }
         case NSNotification.Name.BCPlayerPlaying:
             if var cur = notification.object as? Double {
-//                print("Current: ", cur)
+                curTrack = weekly?.find(time: cur)
                 timeSlider.doubleValue = cur
-                curTrack = bandcamp.weekly.find(time: cur)
                 setAlbumLabel(album: (curTrack)!)
-                let indexPath = IndexPath(item: bandcamp.weekly.tracks.index(of: curTrack)!, section: 0)
-                if let item = collectionView.item(at: indexPath) as? TrackItem {
-                    if !item.isSelected {
-                        print("selected item")
-                        collectionView.deselectAll(self)
-                        collectionView.selectItems(at: [indexPath], scrollPosition: .centeredVertically)
-                        item.hover()
-                    }
-                }
+                selectTrack(curTrack: curTrack)
             }
         case NSNotification.Name.BCPlayerPlayed:
             playLoading.isHidden = true;
@@ -189,16 +180,35 @@ class ViewController: NSViewController {
             )
             print("Play Finished...")
         case NSNotification.Name.BCWeeklyLoaded:
-            bandcamp = notification.object as? BandcampModel
-            curTrack = (bandcamp.weekly.tracks.first)!
-            DispatchQueue.main.async {
-                if self.collectionView != nil {
-                    self.initData()
-                    self.toggleHistory(self)
+            if let dic = notification.object as? Dictionary<String, Any>,
+               let weekly = dic["weekly"] as? WeeklyModel,
+               let history = dic["history"] as? [HistoryModel] {
+                self.weekly = weekly
+                self.history = history
+                curTrack = weekly.tracks.first
+                DispatchQueue.main.async {
+                    if self.collectionView != nil {
+                        self.initData()
+                        self.toggleHistory(self)
+                        self.selectTrack(curTrack: self.curTrack)
+                        self.timeSlider.doubleValue = Double(self.curTrack.timecode)
+                        self.setAlbumLabel(album: (self.curTrack)!)
+                    }
                 }
             }
         default:
             print("")
+        }
+    }
+
+    func selectTrack(curTrack: TrackModel) {
+        let indexPath = IndexPath(item: (weekly?.tracks.index(of: curTrack))!, section: 0)
+        if let item = collectionView.item(at: indexPath) as? TrackItem {
+            if !item.isSelected {
+                collectionView.deselectAll(self)
+                collectionView.selectItems(at: [indexPath], scrollPosition: .centeredVertically)
+                item.hover()
+            }
         }
     }
 
@@ -269,16 +279,31 @@ class ViewController: NSViewController {
     private func configureCollectionView() {
         let flowLayout = NSCollectionViewFlowLayout()
         let height = isHistory ? 256 : 64
-        let inset = isHistory ? NSEdgeInsets(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0) :
-                NSEdgeInsets(top: 0.0, left: 10.0, bottom: 0.0, right: 10.0)
+        let inset = isHistory ? NSEdgeInsets(
+                top: 10.0,
+                left: 10.0,
+                bottom: 10.0,
+                right: 10.0
+        ) : NSEdgeInsets(
+                top: 0.0,
+                left: 10.0,
+                bottom: 0.0,
+                right: 10.0
+        )
 
         flowLayout.itemSize = NSSize(width: 360, height: height)
         flowLayout.sectionInset = inset
         flowLayout.minimumInteritemSpacing = 10.0
         flowLayout.minimumLineSpacing = 10.0
 
-        collectionView.register(TrackItem.self, forItemWithIdentifier: ViewController.trackItemViewItem)
-        collectionView.register(HistoryWeekly.self, forItemWithIdentifier: ViewController.historyWeeklyViewItem)
+        collectionView.register(
+                TrackItem.self,
+                forItemWithIdentifier: ViewController.trackItemViewItem
+        )
+        collectionView.register(
+                HistoryWeekly.self,
+                forItemWithIdentifier: ViewController.historyWeeklyViewItem
+        )
 
         collectionView.collectionViewLayout = flowLayout
     }
@@ -316,9 +341,9 @@ class ViewController: NSViewController {
 extension ViewController: NSCollectionViewDataSource {
     func collectionView(_ collectionView: NSCollectionView, numberOfItemsInSection section: Int) -> Int {
         if self.isHistory {
-            return self.bandcamp.history.count
+            return (self.history?.count)!
         }
-        return self.bandcamp.weekly.tracks.count
+        return (self.weekly?.tracks.count)!
     }
 
     func collectionView(_ collectionView: NSCollectionView, itemForRepresentedObjectAt indexPath: IndexPath) -> NSCollectionViewItem {
@@ -334,7 +359,7 @@ extension ViewController: NSCollectionViewDataSource {
             guard let historyItem = item as? HistoryWeekly else {
                 return item
             }
-            historyItem.model = self.bandcamp.history[indexPath.item]
+            historyItem.model = self.history?[indexPath.item]
             historyItem.index = indexPath
             return item
         } else {
@@ -346,7 +371,7 @@ extension ViewController: NSCollectionViewDataSource {
                 return item
             }
             // 5
-            trackItem.model = self.bandcamp.weekly.tracks[indexPath.item]
+            trackItem.model = self.weekly?.tracks[indexPath.item]
             trackItem.index = indexPath
             return item
         }

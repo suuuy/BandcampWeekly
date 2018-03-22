@@ -61,12 +61,12 @@ class HistoryWeekly: NSCollectionViewItem {
                     progress: { progress in
 
                     },
-                    closure: { bandcamp in
+                    closure: { weekly, history in
                         self.indicator.isHidden = true
                         DispatchQueue.main.async {
                             NotificationCenter.default.post(
                                     name: NSNotification.Name.BCWeeklyLoaded,
-                                    object: bandcamp
+                                    object: ["weekly": weekly, "history": history]
                             )
                         }
                     }
